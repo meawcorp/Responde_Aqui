@@ -1,0 +1,6 @@
+.bannerInitial{
+	width: 50%;
+	height: 100vh;
+	background-image: linear-gradient(to bottom right, var(--secundary), var(--primary));
+	position: fixed;
+}

@@ -7,6 +7,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GreetingController {
+	@GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+	
+	@GetMapping("/fragments/bannerInitial")
+    public String bannerInitial() {
+        return "bannerInitial";
+    }
+	
 	@GetMapping("/timeline")
     public String timeline() {
         return "timeline";

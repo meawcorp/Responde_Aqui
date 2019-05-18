@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/bannerInitial.css}" rel="stylesheet" />
+    <link th:href="@{/css/elements.css}" rel="stylesheet" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <title>Responde Aqui</title>
+</head>
+<body>
+	<div th:insert="fragments/bannerInitial :: bannerInitial"></div>
+	<div class="containerInfos">
+		<h1 class="titleLogin">Entre com sua conta e ajude seus colegas :)</h1>
+		<form th:action="@{/timeline}">
+			<input type="text" class="textInput" placeholder="Matrícula"/>
+			<input type="password" class="textInput" placeholder="Senha"/>
+			<input type="submit" class="button buttonPrimary" value="Entrar"/>
+		</form>
+		
+		<div class="infosBottom">
+			<h1 class="noAccount">Ainda não possui uma conta?</h1>
+			<button class="button buttonPrimary btnRegister">Registre-se agora mesmo!</button>
+		</div>
+	</div>
+</body>
+</html>

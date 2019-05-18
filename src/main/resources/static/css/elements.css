@@ -1,0 +1,45 @@
+form{
+	width: 100%;
+	text-align: center;
+}
+
+.textInput{
+	width: 100%;
+	background: none;
+	border: none;
+	border-bottom: 2px solid var(--secundary);
+	padding: 5px 15px;
+	outline: none;
+	font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 40px;
+}
+
+.textInput:focus{
+	border-bottom: 2px solid var(--primary);
+}
+
+.button{
+	border-radius: 50px;
+	border: none;
+	height: 45px;
+	font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 0 30px;
+    cursor: pointer;
+    transition: .5s background, color;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    outline: none;
+}
+
+.buttonPrimary{
+	background-color: var(--secundary);
+	color: #FFFFFF;
+}
+
+.buttonPrimary:hover{
+	background-color: var(--primary);
+}
