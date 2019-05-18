@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary: #480177;
+    --secundary: #7317B8;
+    --text: #555555;
+}
+
+.container{
+    margin-left: 360px;
+    padding: 70px 42px;
+}
