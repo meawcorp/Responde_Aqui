@@ -12,6 +12,11 @@ public class GreetingController {
         return "login";
     }
 	
+	@GetMapping("/register")
+    public String register() {
+        return "register";
+    }
+	
 	@GetMapping("/fragments/bannerInitial")
     public String bannerInitial() {
         return "bannerInitial";
