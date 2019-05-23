@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/navbar.css}" rel="stylesheet" />
+    <link th:href="@{/css/elements.css}" rel="stylesheet" />
+    <link th:href="@{/css/newForm.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <title>Responde Aqui</title>
+</head>
+<body>
+	<div th:insert="fragments/sidebar :: sidebar"> </div>
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <div class="container">
+    	<div class="containerNewForm">
+	    	<h1 class="titleNewForm">Cadastre um formulário e compartilhe com seus colegas!</h1>
+	    	<form class="formNewForm">
+		    	<input type="text" class="textInput" placeholder="Título"/>
+		    	<input type="text" class="textInput" placeholder="Link"/>
+		    	<textarea rows="5" class="textArea" placeholder="Descrição"></textarea>
+		    	<label class="label">Data de fechamento:</label><br/>
+		    	<input type="date" class="dateInput" placeholder="Data"/><br/>
+	    		<input type="checkbox" id="restrict" onclick="checkRestrict()">
+    			<label class="label" for="restrict">Meu formulário é destinado à um público específico.</label><br/>
+    			<h1 class="subtitleCheckbox">Você pode restringir seu formulário por cidade, campus, curso, turno e sexo.</h1>
+	    		
+	    		<div class="restrictDiv" id="restrictDiv">
+	    			<label class="label">Para quem você deseja restringir seu formulário?</label><br/>
+	    			<div class="formRestrict">
+						<article>
+							<input type="checkbox" id="cidade" onclick="checkCidade()"/>
+							<label class="label" for="cidade">Cidade</label>
+						</article>
+						<article>
+							<input type="checkbox" id="campus" onclick="checkCampus()"/>
+							<label class="label" for="campus">Campus</label>
+						</article>
+						<article>
+							<input type="checkbox" id="curso" onclick="checkCurso()"/>
+							<label class="label" for="curso">Curso</label>
+						</article>
+						<article>
+							<input type="checkbox" id="turno" onclick="checkTurno()"/>
+							<label class="label" for="turno">Turno</label>
+						</article>
+						<article>
+							<input type="checkbox" id="sexo" onclick="checkSexo()"/>
+							<label class="label" for="sexo">Sexo</label>
+						</article>
+					</div>
+	    		</div>
+	    		
+	    		<div class="selects" id="selectCidade">
+					<label>Cidade:</label><br/>
+					<select class="selectBox">
+						<option>Cidade 1</option>
+						<option>Cidade 2</option>
+						<option>Cidade 3</option>
+						<option>Cidade 4</option>
+					</select>
+				</div>
+				
+				<div class="selects" id="selectCampus">
+					<label>Campus:</label><br/>
+					<select class="selectBox">
+						<option>Campus 1</option>
+						<option>Campus 2</option>
+						<option>Campus 3</option>
+						<option>Campus 4</option>
+					</select>
+				</div>
+				
+				<div class="selects" id="selectCurso">
+					<label>Curso:</label><br/>
+					<select class="selectBox">
+						<option>Curso 1</option>
+						<option>Curso 2</option>
+						<option>Curso 3</option>
+						<option>Curso 4</option>
+					</select>
+				</div>
+	    		
+	    		<div class="selects" id="selectTurno">
+					<label>Turno:</label><br/>
+					<select class="selectBox">
+						<option>Matutino</option>
+						<option>Vespertino</option>
+						<option>Integral</option>
+						<option>Noturno</option>
+					</select>
+				</div>
+				
+				<div class="selects" id="selectSexo">
+					<label>Sexo:</label><br/>
+					<select class="selectBox">
+						<option>Masculino</option>
+						<option>Feminino</option>
+					</select>
+				</div>
+	    		
+	    		<div class="buttons">
+					<input type="button" value="Cancelar" class="button buttonSecundary" />
+					<input type="submit" value="Cadastrar" class="button buttonPrimary" />
+				</div>
+	    	</form>
+    	</div>
+    </div>
+	
+</body>
+
+<script>
+	function checkRestrict() {
+	  var checkBox = document.getElementById("restrict");
+	  var div = document.getElementById("restrictDiv");
+	  if (checkBox.checked == true)
+		  div.style.display = "block";
+	  else 
+		  div.style.display = "none";
+	}
+	
+	function checkTurno(){
+	  var checkBox = document.getElementById("turno");
+	  var div = document.getElementById("selectTurno");
+	  if (checkBox.checked == true)
+		  div.style.display = "block";
+	  else 
+		  div.style.display = "none";
+	}
+	
+	function checkSexo(){
+	  var checkBox = document.getElementById("sexo");
+	  var div = document.getElementById("selectSexo");
+	  if (checkBox.checked == true)
+		  div.style.display = "block";
+	  else 
+		  div.style.display = "none";
+	}
+	
+	function checkCidade(){
+	  var checkBox = document.getElementById("cidade");
+	  var div = document.getElementById("selectCidade");
+	  var campus = document.getElementById("selectCampus");
+	  var curso = document.getElementById("selectCurso");
+	  if (checkBox.checked == true)
+		  div.style.display = "block";
+		  campus.style.display = "none";
+		  curso.style.display = "none";
+	  else 
+		  div.style.display = "none";
+	}
+	
+	function checkCampus(){
+	  var checkBox = document.getElementById("campus");
+	  var cidade = document.getElementById("selectCidade");
+	  var campus = document.getElementById("selectCampus");
+	  var curso = document.getElementById("selectCurso");
+	  if (checkBox.checked == true){
+		  cidade.style.display = "block";
+		  campus.style.display = "block";
+		  curso.style.display = "none";
+	  }else{ 
+		  cidade.style.display = "none";
+		  campus.style.display = "none";
+	  }
+	}
+	
+	function checkCurso(){
+	  var checkBox = document.getElementById("curso");
+	  var cidade = document.getElementById("selectCidade");
+	  var campus = document.getElementById("selectCampus");
+	  var curso = document.getElementById("selectCurso");
+	  if (checkBox.checked == true){
+		  cidade.style.display = "block";
+		  campus.style.display = "block";
+		  curso.style.display = "block";
+	  }else{ 
+		  cidade.style.display = "none";
+		  campus.style.display = "none";
+		  curso.style.display = "none";
+	  }
+	}
+</script>
+
+</html>

@@ -1,0 +1,83 @@
+.titleNewForm{
+	width: 500px;
+	font-family: 'Lato', sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.containerNewForm{
+	padding: 0 10vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+textarea{
+	resize: none;
+	width: 100%;
+	background: none;
+	border: 2px solid var(--secundary);
+	padding: 10px 15px;
+	outline: none;
+	font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 40px;
+	border-radius: 8px;
+}
+
+.formNewForm{
+	text-align: left;
+}
+
+.label{
+	font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+}
+
+.subtitleCheckbox{
+	font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text);
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+form input[type="checkbox"]{
+	width: 13px;
+	height: 13px;
+}
+
+.restrictDiv{
+	display: none;
+}
+
+.formRestrict{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 40px;
+	margin-top: 10px;
+}
+
+.buttons{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.buttons .buttonSecundary{
+	margin-right: 30px;
+}
+
+.selects{
+	display: none;
+}
