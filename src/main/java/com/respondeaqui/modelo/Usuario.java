@@ -2,18 +2,45 @@ package com.respondeaqui.modelo;
 
 import java.util.Date;
 
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.respondeaqui.annotation.Idade;
+import com.respondeaqui.annotation.Select;
+import com.respondeaqui.annotation.Sexo;
+import com.respondeaqui.annotation.Turno;
+
+
 public class Usuario {
 	private int matricula;
+	@NotEmpty
 	private String nome;
+	@NotEmpty
+	@Size(min = 6)
 	private String senha;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@Idade(value = 18)
+	@NotNull
 	private Date dt_nascimento;
+	@Turno
 	private char turno;
+	@Sexo
 	private char sexo;
+	
 	private int pontos;
+	
 	private int foto;
+	@Select
 	private int id_cidade;
+	@Select
 	private int id_campus;
+	@Select
 	private int id_curso;
+	
 	
 	public Usuario() {}
 	
@@ -30,9 +57,10 @@ public class Usuario {
 		this.foto = foto;
 		this.id_cidade = id_cidade;
 		this.id_campus = id_campus;
-		this.id_curso = id_curso;
+		this.id_curso = id_curso;  
 	}
 
+	
 	public int getMatricula() {
 		return matricula;
 	}
@@ -56,11 +84,12 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	
+	
 	public Date getDt_nascimento() {
-		return dt_nascimento;
+		return this.dt_nascimento;
 	}
-
+	
 	public void setDt_nascimento(Date dt_nascimento) {
 		this.dt_nascimento = dt_nascimento;
 	}
