@@ -39,4 +39,9 @@ public class GreetingController {
     public String post() {
         return "post";
     }
+	
+	@GetMapping("/newForm")
+    public String newForm() {
+        return "newForm";
+    }
 }
