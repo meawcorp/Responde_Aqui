@@ -20,9 +20,6 @@ public class UsuarioServico {
 		if (usuario != null) {
 			return true;
 		}
-		
 			return false;
 		}
-		
 	}
-

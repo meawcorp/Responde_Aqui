@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link th:rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" th:integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" th:crossorigin="anonymous">
     <link th:href="@{/css/index.css}" rel="stylesheet" />
     <link th:href="@{/css/fragments/bannerInitial.css}" rel="stylesheet" />
     <link th:href="@{/css/elements.css}" rel="stylesheet" />
@@ -20,55 +20,63 @@
 	<div class="containerInfos">
 		<h1 class="titleLogin titleRegister">Para fazer parte do RespondeAqui basta preencher esses dados:</h1>
 		<h1 class="subtitleRegister">Nós recomendados os formulários para você através de suas informações, por isso preencha todas corretamente :)</h1>
-	
-		<form class="formRegister">
-			<input type="text" class="textInput" placeholder="Nome"/>
-			<input type="text" class="textInput" placeholder="Matrícula"/>
-			<label>Data de nascimento:</label><br/>
-			<input type="date" class="dateInput" placeholder="Data"/>
+		
+		<form class="formRegister" th:action="@{/cadastro}" th:object="${usuario}" method="post">
+			<div>
+				<input type="text" class="textInput" placeholder="Nome" th:field="*{nome}"/>
+				<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+			</div>
+			<div>
+				<input type="text" class="textInput" placeholder="Matrícula" th:field="*{matricula}"/>
+				<div th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></div>
+				<div th:if="${existe}"><span class="text text-center">Já existe uma conta com esta matrícula</span></div>
+			</div>
+			<div>
+				<label>Data de nascimento:</label><br/>
+				<input type="date" class="dateInput" placeholder="Data" th:field="*{dt_nascimento}"/>
+				<div th:if="${#fields.hasErrors('dt_nascimento')}" th:errors="*{dt_nascimento}"></div>
+			</div>
 			<div class="formGender">
 				<label>Sexo:</label>
 				<article>
-					<input type="radio" name="sexo" value="f"/>
+					<input type="radio" name="sexo" value="f" th:field="*{sexo}"/>
 					<label>Feminino</label>
 				</article>
 				<article>
-					<input type="radio" name="sexo" value="m"/>
+					<input type="radio" name="sexo" value="m" th:field="*{sexo}"/>
 					<label>Masculino</label>
 				</article>
 				<article>
-					<input type="radio" name="sexo" value="n"/>
+					<input type="radio" name="sexo" value="n" th:field="*{sexo}"/>
 					<label>Não definir</label>
 				</article>
-			</div><br/>
-			<label>Cidade:</label><br/>
-			<select class="selectBox">
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
+			</div>
+			<div th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div><br/>
+			<label>Cidade:</label><br/><div th:if="${#fields.hasErrors('id_cidade')}" th:errors="*{id_cidade}"></div>
+			<select class="selectBox" th:field="*{id_cidade}">
+				<option value="0">Selecione</option>
+				<option value="1">Fortaleza</option>
 			</select><br/>
-			<label>Campus:</label><br/>
-			<select class="selectBox">
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
+			<label>Campus:</label><br/><div th:if="${#fields.hasErrors('id_campus')}" th:errors="*{id_campus}"></div>
+			<select class="selectBox" th:field="*{id_campus}">
+				<option value="0">Selecione</option>
+				<option value="1">Fortaleza</option>
 			</select><br/>
-			<label>Curso:</label><br/>
-			<select class="selectBox">
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
-				<option>Fortaleza</option>
+			<label>Curso:</label><br/><div th:if="${#fields.hasErrors('id_curso')}" th:errors="*{id_curso}"></div>
+			<select class="selectBox" th:field="*{id_curso}">
+				<option value="0">Selecione</option>
+				<option value="1">Fortaleza</option>
+			</select><br/>
+			<label>Turno:</label><br/><div th:if="${#fields.hasErrors('turno')}" th:errors="*{turno}"></div>
+			<select class="selectBox" th:field="*{turno}"> 
+				<option value="x">Selecione</option>
+				<option value="m">Matutino</option>
+				<option value="v">Vespertino</option>
+				<option value="d">Diurno</option>
+				<option value="n">Noturno</option>
 			</select>
-			<input type="password" class="textInput" placeholder="Senha"/>
+			<input type="password" class="textInput" placeholder="Senha" th:field="*{senha}"/>
+			<div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
 			<input type="password" class="textInput" placeholder="Repetir senha"/>
 			
 			<div class="buttons">
