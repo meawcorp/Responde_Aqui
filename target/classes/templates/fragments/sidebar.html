@@ -14,22 +14,18 @@
 	      <i class="fas fa-award"></i>
 	      <h1 class="nameProfile">Karla Christie</h1>
 	  </div>
-	  <a href="#" th:href="@{/timeline}">
-		  <article class="optionSidebar" th:classappend="${module == 'timeline' ? 'active' : ''}">
-		    <i class="fas fa-clipboard-list"></i>
-		    <h1 class="textOption">Responder</h1>
-		  </article>
-	  </a>
+	  <article class="optionSidebar active">
+	    <i class="fas fa-clipboard-list"></i>
+	    <h1 class="textOption">Responder</h1>
+	  </article>
 	  <article class="optionSidebar">
 	      <i class="fas fa-user"></i>
 	    <h1 class="textOption">Perfil</h1>
 	  </article>
-	  <a href="#" th:href="@{/newForm}">
-		  <article class="optionSidebar" th:classappend="${module == 'newForm' ? 'active' : ''}">
-		      <i class="fas fa-plus"></i>
-		    <h1 class="textOption">Criar formulário</h1>
-		  </article>
-	  </a>
+	  <article class="optionSidebar">
+	      <i class="fas fa-plus"></i>
+	    <h1 class="textOption">Criar formulário</h1>
+	  </article>
 	  <article class="optionSidebar">
 	      <i class="fas fa-folder"></i>
 	    <h1 class="textOption">Meus formulários</h1>

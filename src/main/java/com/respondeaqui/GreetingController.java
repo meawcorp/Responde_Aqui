@@ -20,11 +20,10 @@ public class GreetingController {
         return "bannerInitial";
     }
 	
-	/*@GetMapping("/timeline")
-    public String timeline(Model model) {
-		model.addAttribute("module", "timeline");
+	@GetMapping("/timeline")
+    public String timeline() {
         return "timeline";
-    }*/
+    }
 	
 	@GetMapping("/fragments/sidebar")
     public String sidebar() {
@@ -41,15 +40,8 @@ public class GreetingController {
         return "post";
     }
 	
-	/*@GetMapping("/newForm")
-    public String newForm(Model model) {
-		model.addAttribute("module", "newForm");
+	@GetMapping("/newForm")
+    public String newForm() {
         return "newForm";
     }
-	
-	@GetMapping("/form")
-    public String form(Model model) {
-		model.addAttribute("module", "timeline");
-        return "form";
-    }*/
 }

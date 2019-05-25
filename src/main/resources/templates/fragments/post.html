@@ -8,24 +8,22 @@
     />
 </head>
 <body>
-	<a href="#" th:href="@{/form}" th:fragment="post">
-		<div class="post">
-	         <div class="userPost">
-	             <img th:src="@{/images/profile1.jpg}" class="imgUserPost"/>
-	             <div>
-	               <h1 class="nameUserPost">Giovanna Lima</h1>
-	               <h1 class="timePost">21h</h1>
-	             </div>
-	             <div class="qtdReply">
-	               <i class="fas fa-reply"></i>
-	               <h1 class="reply">15</h1>
-	             </div>
-	         </div>
-	       <div class="content">
-	         <h1 class="titlePost">Pesquisa sobre segurança noturna no Campus do Pici</h1>
-	         <h1 class="postContent">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum...</h1>
-	       </div>
-	     </div>
-     </a>
+	<div class="post" th:fragment="post">
+         <div class="userPost">
+             <img th:src="@{/images/profile1.jpg}" class="imgUserPost"/>
+             <div>
+               <h1 class="nameUserPost">Giovanna Lima</h1>
+               <h1 class="timePost">21h</h1>
+             </div>
+             <div class="qtdReply">
+               <i class="fas fa-reply"></i>
+               <h1 class="reply">15</h1>
+             </div>
+         </div>
+       <div class="content">
+         <h1 class="titlePost">Pesquisa sobre segurança noturna no Campus do Pici</h1>
+         <h1 class="postContent">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum...</h1>
+       </div>
+     </div>
 </body>
 </html>
