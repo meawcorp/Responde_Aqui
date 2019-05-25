@@ -68,14 +68,14 @@
 
 .userPost .nameUserPost{
     font-family: 'Lato', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 400;
     color: var(--text);
 }
 
 .userPost .timePost{
     font-family: 'Lato', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     color: #AEAEAE;
     margin-top: -10px;
