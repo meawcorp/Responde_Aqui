@@ -21,7 +21,8 @@ public class GreetingController {
     }
 	
 	@GetMapping("/timeline")
-    public String timeline() {
+    public String timeline(Model model) {
+		model.addAttribute("module", "timeline");
         return "timeline";
     }
 	
@@ -41,7 +42,14 @@ public class GreetingController {
     }
 	
 	@GetMapping("/newForm")
-    public String newForm() {
+    public String newForm(Model model) {
+		model.addAttribute("module", "newForm");
         return "newForm";
+    }
+	
+	@GetMapping("/form")
+    public String form(Model model) {
+		model.addAttribute("module", "timeline");
+        return "form";
     }
 }
