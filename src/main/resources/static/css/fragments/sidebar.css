@@ -22,7 +22,7 @@
 
 .profile i{
     font-size: 60px;
-    color: orange;
+    color: var(--terceary);
     margin-left: -50px;
 }
 
