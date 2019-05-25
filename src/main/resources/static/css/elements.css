@@ -73,7 +73,7 @@ form{
     outline: none;
 }
 
-.selectBox:focus{
+.dateInput:focus, .selectBox:focus{
 	border: 1px solid var(--terceary);
 }
 
