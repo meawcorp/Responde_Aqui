@@ -10,7 +10,8 @@
     font-family: 'Lato', sans-serif;
     font-size: 20px;
     font-weight: 700;
-    color: var(--text);
+    color: var(--primary);
+    transition: color .5s;
 }
 
 .qtdReply i{
@@ -48,7 +49,7 @@
 }
 
 .content:hover .titlePost{
-    color: var(--secundary);
+    color: var(--terceary);
 }
 
 .userPost{
@@ -96,10 +97,11 @@
 	padding: 7px;
 	margin-left: 10px;
 	font-size: 18px;
+	transition: color .5s;
 }
 
 .modifyPost i:hover{
-	color: var(--secundary);	
+	color: var(--terceary);	
 }
 
 .editPost{
@@ -107,5 +109,5 @@
 }
 
 .editPost:hover .titlePost{
-	color: var(--secundary);
+	color: var(--terceary);
 }

@@ -9,15 +9,19 @@
 }
 
 .containerNewForm{
-	padding: 0 10vw;
+	padding: 40px 60px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background: white;
+	margin: 0 5vw;
+	border-radius: 10px;
 }
 
 textarea{
 	resize: none;
-	width: 100%;
+	min-width: 95%;
+	max-width: 100%;
 	background: none;
 	border: 2px solid var(--secundary);
 	padding: 10px 15px;
@@ -28,10 +32,18 @@ textarea{
     color: var(--text);
     margin-bottom: 40px;
 	border-radius: 8px;
+	transition: border .5s;
+}
+
+textarea:focus{
+	border: 2px solid var(--terceary);
 }
 
 .formNewForm{
 	text-align: left;
+}
+.divCenter{
+	text-align: center;
 }
 
 .label{
@@ -53,6 +65,11 @@ textarea{
 form input[type="checkbox"]{
 	width: 13px;
 	height: 13px;
+}
+
+form input[type="text"]{
+	min-width: 90%;
+	max-width: 95%;
 }
 
 .restrictDiv{

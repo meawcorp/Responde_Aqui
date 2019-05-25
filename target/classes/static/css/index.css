@@ -1,12 +1,13 @@
 body{
     margin: 0;
     padding: 0;
-    background: #FCFCFC;
+    background: #F7F7F7;
 }
 
 :root {
     --primary: #480177;
     --secundary: #7317B8;
+    --terceary: #FF9900;
     --text: #555555;
 }
 
