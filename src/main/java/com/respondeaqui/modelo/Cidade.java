@@ -4,6 +4,8 @@ public class Cidade {
 	private int id;
 	private String nome;
 
+	public Cidade() {}
+
 	public int getId() {
 		return id;
 	}

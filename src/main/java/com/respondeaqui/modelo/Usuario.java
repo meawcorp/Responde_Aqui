@@ -2,7 +2,6 @@ package com.respondeaqui.modelo;
 
 import java.util.Date;
 
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,11 +15,12 @@ import com.respondeaqui.annotation.Turno;
 
 
 public class Usuario {
-	private int matricula;
-	@NotEmpty
-	private String nome;
 	@NotEmpty
 	@Size(min = 6)
+	private String matricula;
+	@NotEmpty
+	private String nome;
+	@Size(min = 6, max = 9)
 	private String senha;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@Idade(value = 18)
@@ -36,24 +36,25 @@ public class Usuario {
 	private int foto;
 	@Select
 	private int id_cidade;
+	private String cidade;
 	@Select
 	private int id_campus;
+	private String campus;
 	@Select
 	private int id_curso;
-	
+	private String curso;
 	
 	public Usuario() {}
 	
-	public Usuario(int matricula, String nome, String senha, Date dt_nascimento, char turno, char sexo, int pontos,
+	public Usuario(String matricula, String nome, String senha, Date dt_nascimento, char turno, char sexo,
 			int foto, int id_cidade, int id_campus, int id_curso) {
-		
+
 		this.matricula = matricula;
 		this.nome = nome;
 		this.senha = senha;
 		this.dt_nascimento = dt_nascimento;
 		this.turno = turno;
 		this.sexo = sexo;
-		this.pontos = pontos;
 		this.foto = foto;
 		this.id_cidade = id_cidade;
 		this.id_campus = id_campus;
@@ -61,11 +62,35 @@ public class Usuario {
 	}
 
 	
-	public int getMatricula() {
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getCampus() {
+		return campus;
+	}
+
+	public void setCampus(String campus) {
+		this.campus = campus;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 

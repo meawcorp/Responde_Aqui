@@ -5,6 +5,8 @@ public class Curso {
 	private String nome;
 	private int id_campus;
 	
+	public Curso(){}
+	
 	public int getId() {
 		return id;
 	}

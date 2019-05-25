@@ -13,7 +13,7 @@ public class UsuarioServico {
 	@Autowired
 	UsuarioDao usuarioDao;
 
-	public boolean usuarioExiste(int matricula) {
+	public boolean usuarioExiste(String matricula) {
 		
 		Usuario usuario = usuarioDao.findByMatricula(matricula);
 		
@@ -21,5 +21,5 @@ public class UsuarioServico {
 			return true;
 		}
 			return false;
-		}
 	}
+}

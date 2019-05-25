@@ -21,12 +21,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public Usuario findByMatricula(int matricula) {
+	public Usuario findByMatricula(String matricula) {
 		try {
 			return jdbcTemplate.queryForObject(
 					"select * from usuario where matricula = ?", 
 					new UsuarioRowMapper(), 
-					matricula);
+					Integer.parseInt(matricula));
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -37,9 +37,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(
-						"insert into usuario (matricula, nome, senha, dt_nascimento, turno, sexo, pontos, foto, id_cidade, id_campus, id_curso)"
-								+ "value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-				ps.setInt(1, usuario.getMatricula());
+						"insert into usuario (matricula, nome, senha, dt_nascimento, turno, sexo, pontos, foto)"
+						+ "values (?, ?, ?, ?, ?, ?, ?, ?)");
+				ps.setInt(1, Integer.parseInt(usuario.getMatricula()));
 				ps.setString(2, usuario.getNome());
 				ps.setString(3, usuario.getSenha());
 				ps.setDate(4, new java.sql.Date(usuario.getDt_nascimento().getTime()));
@@ -47,9 +47,6 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				ps.setString(6, String.valueOf(usuario.getSexo()));
 				ps.setInt(7, usuario.getPontos());
 				ps.setInt(8, usuario.getFoto());
-				ps.setInt(9, usuario.getId_cidade());
-				ps.setInt(10, usuario.getId_campus());
-				ps.setInt(11, usuario.getId_curso());
 				return ps;
 			}
 		});
