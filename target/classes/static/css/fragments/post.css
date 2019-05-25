@@ -80,3 +80,32 @@
     color: #AEAEAE;
     margin-top: -10px;
 }
+
+.post .divTitle{
+	display: grid;
+	grid-template-columns: 1fr 200px;
+	align-items: center;
+}
+
+.modifyPost{
+	color: var(--primary);
+	text-align: right;
+}
+
+.modifyPost i{
+	padding: 7px;
+	margin-left: 10px;
+	font-size: 18px;
+}
+
+.modifyPost i:hover{
+	color: var(--secundary);	
+}
+
+.editPost{
+	cursor: pointer;
+}
+
+.editPost:hover .titlePost{
+	color: var(--secundary);
+}

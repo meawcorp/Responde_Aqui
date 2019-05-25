@@ -54,4 +54,22 @@ public class GreetingController {
 		model.addAttribute("module", "timeline");
         return "form";
     }
+	
+	@GetMapping("/answeredForms")
+    public String answeredForms(Model model) {
+		model.addAttribute("module", "answeredForms");
+        return "answeredForms";
+    }
+	
+	@GetMapping("/myForms")
+    public String myForms(Model model) {
+		model.addAttribute("module", "myForms");
+        return "myForms";
+    }
+	
+	@GetMapping("/editForm")
+    public String editForm(Model model) {
+		model.addAttribute("module", "myForms");
+        return "editForm";
+    }
 }

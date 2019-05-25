@@ -30,14 +30,18 @@
 		    <h1 class="textOption">Criar formulário</h1>
 		  </article>
 	  </a>
-	  <article class="optionSidebar">
-	      <i class="fas fa-folder"></i>
-	    <h1 class="textOption">Meus formulários</h1>
-	  </article>
-	  <article class="optionSidebar">
-	      <i class="fas fa-list-ul"></i>
-	    <h1 class="textOption">Respondidos</h1>
-	  </article>
+	  <a href="#" th:href="@{/myForms}">
+		  <article class="optionSidebar" th:classappend="${module == 'myForms' ? 'active' : ''}">
+		      <i class="fas fa-folder"></i>
+		    <h1 class="textOption">Meus formulários</h1>
+		  </article>
+	  </a>
+	  <a href="#" th:href="@{/answeredForms}">
+		  <article class="optionSidebar" th:classappend="${module == 'answeredForms' ? 'active' : ''}">
+		      <i class="fas fa-list-ul"></i>
+		    <h1 class="textOption">Respondidos</h1>
+		  </article>
+	  </a>
 	  <article class="optionSidebar">
 	      <i class="fas fa-trophy"></i>
 	    <h1 class="textOption">Ranking</h1>
