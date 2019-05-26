@@ -15,3 +15,7 @@ body{
     margin-left: 25vw;
     padding: 70px 42px;
 }
+
+a{
+	text-decoration: none;
+}

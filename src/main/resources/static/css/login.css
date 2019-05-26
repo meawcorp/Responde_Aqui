@@ -6,6 +6,7 @@
 	flex-direction: column;
 	align-items: center;
 	background: white;
+	min-height: 80vh;
 }
 
 .titleLogin{
