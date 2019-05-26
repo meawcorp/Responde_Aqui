@@ -18,15 +18,18 @@
 	<div th:insert="fragments/bannerInitial :: bannerInitial"></div>
 	<div class="containerInfos">
 		<h1 class="titleLogin">Entre com sua conta e ajude seus colegas :)</h1>
-		<form th:action="@{/timeline}">
-			<input type="text" class="textInput" placeholder="Matrícula"/>
-			<input type="password" class="textInput" placeholder="Senha"/>
+		<div th:if="${param.error}">
+	    	Matrícula ou senha incorreta.
+        </div>
+		<form th:action="@{/login}" th:method = "post">
+			<input type="text" class="textInput" placeholder="Matrícula" name="username"/>
+			<input type="password" class="textInput" placeholder="Senha" name="password"/>
 			<input type="submit" class="button buttonPrimary" value="Entrar"/>
 		</form>
 		
 		<div class="infosBottom">
 			<h1 class="noAccount">Ainda não possui uma conta?</h1>
-			<form th:action="@{/register}">
+			<form th:action="@{/cadastro}">
 				<button class="button buttonPrimary btnRegister">Registre-se agora mesmo!</button>
 			</form>
 		</div>

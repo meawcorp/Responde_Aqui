@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/form.css}" rel="stylesheet" />
+    <link th:href="@{/css/elements.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/navbar.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/post.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <title>Responde Aqui</title>
+</head>
+<body>
+	<div th:replace="fragments/sidebar :: sidebar" > </div>
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <div class="container">
+    	<div class="form">
+	    	<h1 class="titleForm">Pesquisa sobre experiência audiovisual no SMD</h1>
+			<h1 class="descriptionForm">Olá pessoas, tudo bom? Somos a equipe PLANO, da disciplina de Projeto II. Contamos com sua ajuda para responder esse pequeno questionário sobre sua relação com os projetos audiovisuais desenvolvidos no curso. As informações obtidas através desse formulário são apenas para uso do projeto em questão. Respondê-lo dura em média 5 minutos. 
+	Gratos pela ajuda <3</h1>
+			<div class="infosForm">
+				<div class="tags">
+					<h1 class="titleResponse titleTags">Público:</h1>
+					<div>
+						<article class="tag">Fortaleza</article>
+						<article class="tag">Pici</article>
+						<article class="tag">Sistemas e mídias digitais</article>
+					</div>
+				</div>
+				<div class="response">
+					<h1 class="titleResponse">Respostas:</h1>
+					<h1 class="numberResponse">18</h1>
+				</div>
+			</div>
+			<div class="userPost">
+	            <img th:src="@{/images/profile1.jpg}" class="imgUserPost"/>
+	            <div>
+	              <h1 class="nameUserPost">Giovanna Lima</h1>
+	              <h1 class="timePost">21h</h1>
+	            </div>
+	        </div>
+	        <iframe 
+	        	src="https://docs.google.com/forms/d/e/1FAIpQLSeESNpgT29zMKFdiSg9sybv0W1tRad22o_oB2eh4GxslBpuBw/viewform?embedded=true" 
+	        	width="80%" height="600" 
+	        	frameborder="0" 
+	        	marginheight="0" 
+	        	marginwidth="0"
+	        	class="formulario"
+	        >
+	        Carregando…
+	        </iframe>
+			<div class="buttons">
+				<input type="button" value="Cancelar" class="button buttonSecundary"/>
+				<input type="submit" value="Concluir" class="button buttonPrimary" />
+			</div>
+    	</div>
+	</div>
+</body>
+</html>

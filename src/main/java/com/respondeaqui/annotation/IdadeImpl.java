@@ -17,14 +17,13 @@ public class IdadeImpl implements ConstraintValidator<Idade, Date> {
     @Override
     public boolean isValid(Date date, ConstraintValidatorContext constraintValidatorContext) {
     	
-        if ( date == null ) {
-            return false;
+        if ( date != null ) {
+	    	LocalDate localdate = this.convertToLocalDateViaInstant(date);
+	    	
+	        LocalDate today = LocalDate.now();
+	        return ChronoUnit.YEARS.between(localdate, today)>=minAge;
         }
-    	
-    	LocalDate localdate = this.convertToLocalDateViaInstant(date);
-    	
-        LocalDate today = LocalDate.now();
-        return ChronoUnit.YEARS.between(localdate, today)>=minAge;
+        return true;
     }
     
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {

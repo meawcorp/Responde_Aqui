@@ -4,7 +4,7 @@ import com.respondeaqui.modelo.Usuario;
 
 public interface UsuarioDao {
 	
-	Usuario findByMatricula(int matricula);
+	Usuario findByMatricula(String matricula);
 	
 	void criarUsuario(Usuario usuario);
 }

@@ -15,10 +15,11 @@ form{
     font-weight: 400;
     color: var(--text);
     margin-bottom: 40px;
+    transition: border .5s;
 }
 
 .textInput:focus{
-	border-bottom: 2px solid var(--primary);
+	border-bottom: 2px solid var(--terceary);
 }
 
 .button{
@@ -41,7 +42,7 @@ form{
 }
 
 .buttonPrimary:hover{
-	background-color: var(--primary);
+	background-color: var(--terceary);
 }
 
 .buttonSecundary{
@@ -51,9 +52,9 @@ form{
 }
 
 .buttonSecundary:hover{
-	background-color: var(--primary);
+	background-color: var(--terceary);
 	color: #FFFFFF;
-	border: 1px solid var(--primary);
+	border: 1px solid var(--terceary);
 }
 
 .dateInput, .selectBox{
@@ -69,6 +70,11 @@ form{
     margin-top: 10px;
     margin-bottom: 30px;
     width: 200px;
+    outline: none;
+}
+
+.dateInput:focus, .selectBox:focus{
+	border: 1px solid var(--terceary);
 }
 
 form label{

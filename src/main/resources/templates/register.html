@@ -60,12 +60,12 @@
 			<label>Campus:</label><br/><div th:if="${#fields.hasErrors('id_campus')}" th:errors="*{id_campus}"></div>
 			<select class="selectBox" th:field="*{id_campus}">
 				<option value="0">Selecione</option>
-				<option value="1">Fortaleza</option>
+				<option value="1">Pici</option>
 			</select><br/>
 			<label>Curso:</label><br/><div th:if="${#fields.hasErrors('id_curso')}" th:errors="*{id_curso}"></div>
 			<select class="selectBox" th:field="*{id_curso}">
 				<option value="0">Selecione</option>
-				<option value="1">Fortaleza</option>
+				<option value="1">Sistemas e Mídias</option>
 			</select><br/>
 			<label>Turno:</label><br/><div th:if="${#fields.hasErrors('turno')}" th:errors="*{turno}"></div>
 			<select class="selectBox" th:field="*{turno}"> 
@@ -77,7 +77,6 @@
 			</select>
 			<input type="password" class="textInput" placeholder="Senha" th:field="*{senha}"/>
 			<div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
-			<input type="password" class="textInput" placeholder="Repetir senha"/>
 			
 			<div class="buttons">
 				<input type="button" value="Cancelar" class="button buttonSecundary" />
