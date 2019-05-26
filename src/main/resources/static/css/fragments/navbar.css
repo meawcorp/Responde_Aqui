@@ -1,8 +1,13 @@
 .navBar{
     position: fixed;
-    width: 100%;
+    width: 75vw;
     height: 50px;
-    border-bottom: 1px solid rgba(85, 85, 85, 0.2);
-    margin-left: 360px;
+    box-shadow: 0 3px 10px 0 rgba(10, 10, 10, 0.1);
+    margin-left: 25vw;
     background-color: white;
+    text-align: center;
+}
+
+.navBar .logo{
+	height: 50px;
 }
