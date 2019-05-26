@@ -9,9 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.respondeaqui.dao.CampusDao;
-import com.respondeaqui.dao.CidadeDao;
-import com.respondeaqui.dao.CursoDao;
 import com.respondeaqui.dao.UsuarioDao;
 import com.respondeaqui.modelo.Usuario;
 import com.respondeaqui.servico.UsuarioServico;
@@ -21,13 +18,6 @@ public class CadastroControlador {
 	
 	@Autowired
 	private UsuarioDao usuarioDao;
-	
-	@Autowired
-	private CidadeDao cidadeDao;
-	@Autowired
-	private CampusDao campusDao;
-	@Autowired
-	private CursoDao cursoDao;
 	
 	@Autowired
 	private UsuarioServico usuarioServico;
@@ -51,12 +41,11 @@ public class CadastroControlador {
 			return "register";
 		}
 		
-		usuario.setCidade(cidadeDao.findByIdCidade(usuario.getId_cidade()).getNome());
+		//usuario.setCidade(cidadeDao.findByIdCidade(usuario.getId_cidade()).getNome());
 		//usuario.setCampus(campusDao.findByIdCampus(usuario.getId_campus()).getNome());
 		//usuario.setCurso(cursoDao.findByIdCurso(usuario.getId_curso()).getNome());
 		
 		usuarioDao.criarUsuario(usuario);
 		return "login";
 	}
-
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.respondeaqui.dao.UsuarioDao;
@@ -41,7 +42,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 						+ "values (?, ?, ?, ?, ?, ?, ?, ?)");
 				ps.setInt(1, Integer.parseInt(usuario.getMatricula()));
 				ps.setString(2, usuario.getNome());
-				ps.setString(3, usuario.getSenha());
+				ps.setString(3, new BCryptPasswordEncoder().encode(usuario.getSenha()));
 				ps.setDate(4, new java.sql.Date(usuario.getDt_nascimento().getTime()));
 				ps.setString(5, String.valueOf(usuario.getTurno()));
 				ps.setString(6, String.valueOf(usuario.getSexo()));
