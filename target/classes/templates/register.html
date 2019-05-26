@@ -21,7 +21,7 @@
 		<h1 class="titleLogin titleRegister">Para fazer parte do RespondeAqui basta preencher esses dados:</h1>
 		<h1 class="subtitleRegister">Nós recomendados os formulários para você através de suas informações, por isso preencha todas corretamente :)</h1>
 		
-    <form class="formRegister" th:action="@{/cadastro}" th:object="${usuario}" method="post">
+		<form class="formRegister" th:action="@{/cadastro}" th:object="${usuario}" method="post">
 			<div>
 				<input type="text" class="textInput" placeholder="Nome" th:field="*{nome}"/>
 				<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
@@ -77,11 +77,13 @@
 			</select>
 			<input type="password" class="textInput" placeholder="Senha" th:field="*{senha}"/>
 			<div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
+			
 			<div class="buttons">
 				<input type="button" value="Cancelar" class="button buttonSecundary" />
 				<input type="submit" value="Cadastrar" class="button buttonPrimary" />
 			</div>
 		</form>
+    
 	</div>
 </body>
 </html>
