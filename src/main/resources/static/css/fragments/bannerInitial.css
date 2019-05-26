@@ -3,4 +3,11 @@
 	height: 100vh;
 	background-image: linear-gradient(to bottom right, var(--secundary), var(--primary));
 	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bannerInitial .logoInitial{
+	width: 70%;
 }
