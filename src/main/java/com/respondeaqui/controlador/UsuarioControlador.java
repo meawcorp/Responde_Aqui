@@ -14,7 +14,7 @@ import com.respondeaqui.modelo.Usuario;
 import com.respondeaqui.servico.UsuarioServico;
 
 @Controller
-public class CadastroControlador {
+public class UsuarioControlador {
 	
 	@Autowired
 	private UsuarioDao usuarioDao;
@@ -23,7 +23,7 @@ public class CadastroControlador {
 	private UsuarioServico usuarioServico;
 
 	@GetMapping("/cadastro")
-	public String cadastroForm(Model model) {
+	public String cadastrarUsuario(Model model) {
 
 		model.addAttribute("usuario", new Usuario());
 		return "register";
@@ -45,7 +45,7 @@ public class CadastroControlador {
 		//usuario.setCampus(campusDao.findByIdCampus(usuario.getId_campus()).getNome());
 		//usuario.setCurso(cursoDao.findByIdCurso(usuario.getId_curso()).getNome());
 		
-		usuarioDao.criarUsuario(usuario);
+		usuarioDao.cadastrarUsuario(usuario);
 		return "login";
 	}
 }

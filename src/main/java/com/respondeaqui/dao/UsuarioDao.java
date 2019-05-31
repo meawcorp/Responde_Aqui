@@ -6,5 +6,5 @@ public interface UsuarioDao {
 	
 	Usuario findByMatricula(String matricula);
 	
-	void criarUsuario(Usuario usuario);
+	void cadastrarUsuario(Usuario usuario);
 }

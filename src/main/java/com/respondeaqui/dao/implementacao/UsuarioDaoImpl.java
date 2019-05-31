@@ -33,7 +33,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 	}
 	
-	public void criarUsuario(final Usuario usuario) {
+	public void cadastrarUsuario(final Usuario usuario) {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: RespondeAqui
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Mateus Santos
+Built-By: Andrew Noronha
 Implementation-Vendor-Id: com.respondeaqui
-Build-Jdk: 1.8.0_144
+Build-Jdk: 1.8.0_151
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/RespondeAqui
 Created-By: Maven Integration for Eclipse
