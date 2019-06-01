@@ -77,4 +77,10 @@ public class GreetingController {
 		model.addAttribute("module", "profile");
         return "profile";
     }
+	
+	@GetMapping("/editProfile")
+    public String editProfile(Model model) {
+		model.addAttribute("module", "profile");
+        return "editProfile";
+    }
 }

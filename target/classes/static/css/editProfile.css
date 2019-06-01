@@ -1,0 +1,27 @@
+.containerEditProfile{
+	margin: 20px 5vw;
+	padding: 20px 60px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.containerEditProfile .formRegister input[type="text"], .containerEditProfile .formRegister input[type="password"]{
+	width: 500px;
+}
+
+.containerEditProfile .formGender{
+	justify-content: left;
+}
+
+.containerEditProfile .formGender article{
+	margin-left: 20px;
+}
+
+.containerEditProfile .titleEditProfile{
+	font-family: 'Lato', sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 30px;
+}

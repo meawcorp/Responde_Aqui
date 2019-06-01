@@ -35,7 +35,7 @@
     margin-top: 0;
 }
 
-.profileCard button{
+.profileCard a{
 	position: absolute;
 	right: 50px;
 	height: 40px;
@@ -44,14 +44,13 @@
 .contentProfile{
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-gap: 100px;
+	grid-gap: 50px;
 }
 
 .contentProfile .titleInformation{
 	padding: 5px 15px;
 	background-color: var(--secundary);
 	border-radius: 0 50px 50px 0;
-	width: 100%;
 	font-family: 'Lato', sans-serif;
     font-size: 16px;
     font-weight: 300;
@@ -105,4 +104,10 @@
     color: var(--primary);
     margin-top: 0;
     margin-bottom: 20px;
+}
+
+.contentProfile div{
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
 }
