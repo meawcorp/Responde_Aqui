@@ -1,0 +1,108 @@
+.profileCard{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+.profileCard .imgProfile{
+	width: 150px;
+	height: 150px;
+	background-color: white;
+	border: 2px solid var(--secundary);
+}
+
+.profileCard .nameProfile{
+	font-family: 'Lato', sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 5px;
+}
+
+.profileCard .nameProfile i{
+	margin-left: 5px;
+	color: var(--primary);
+}
+
+.profileCard .resgistrationProfile{
+	font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--text);
+    margin-top: 0;
+}
+
+.profileCard button{
+	position: absolute;
+	right: 50px;
+	height: 40px;
+}
+
+.contentProfile{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 100px;
+}
+
+.contentProfile .titleInformation{
+	padding: 5px 15px;
+	background-color: var(--secundary);
+	border-radius: 0 50px 50px 0;
+	width: 100%;
+	font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+}
+
+.contentProfile .information{
+	font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 30px;
+}
+
+.contentProfile .contentLevel{
+	text-align: center;
+}
+
+.contentProfile .level{
+	font-family: 'Lato', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.contentProfile .contentLevel i{
+	font-size: 80px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.contentProfile .contentLevel img{
+	width: 200px;
+	height: 200px;
+}
+
+.contentProfile .valueLevel{
+	font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.contentProfile .titleLevel{
+	font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 20px;
+}

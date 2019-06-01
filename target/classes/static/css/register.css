@@ -34,3 +34,23 @@
 .formRegister .buttonSecundary{
 	margin-right: 30px;
 }
+
+.avatars{
+	display: flex;
+	justify-content: space-between;
+}
+
+.avatars img{
+	margin-top: 10px;
+	margin-bottom: 30px;
+	width: 100px;
+	cursor: pointer;
+}
+
+.avatars input[type="radio"]{
+	display: none;
+}
+
+.avatars input[type="radio"]:checked+label img{
+    opacity: 0.4;
+}

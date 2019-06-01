@@ -23,6 +23,19 @@
 		
 		<form class="formRegister" th:action="@{/cadastro}" th:object="${usuario}" method="post">
 			<div>
+				<label>Escolha seu avatar:</label>
+				<div class="avatars">
+					<input type="radio" name="avatar" id="avatar1" value="1"/>
+					<label for="avatar1"><img th:src="@{/images/avatars/sheep.png}" class="imgUserPost"/></label>
+					<input type="radio" name="avatar" id="avatar2" value="2"/>
+					<label for="avatar2"><img th:src="@{/images/avatars/spider.png}" class="imgUserPost"/></label>
+					<input type="radio" name="avatar" id="avatar3" value="3"/>
+					<label for="avatar3"><img th:src="@{/images/avatars/sloth.png}" class="imgUserPost"/></label>
+					<input type="radio" name="avatar" id="avatar4" value="4"/>
+					<label for="avatar4"><img th:src="@{/images/avatars/bear.png}" class="imgUserPost"/></label>
+				</div>
+			</div>
+			<div>
 				<input type="text" class="textInput" placeholder="Nome" th:field="*{nome}"/>
 				<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
 			</div>
@@ -39,16 +52,16 @@
 			<div class="formGender">
 				<label>Sexo:</label>
 				<article>
-					<input type="radio" name="sexo" value="f" th:field="*{sexo}"/>
-					<label>Feminino</label>
+					<input type="radio" name="sexo" id="f" value="f" th:field="*{sexo}"/>
+					<label for="f">Feminino</label>
 				</article>
 				<article>
-					<input type="radio" name="sexo" value="m" th:field="*{sexo}"/>
-					<label>Masculino</label>
+					<input type="radio" name="sexo" id="m" value="m" th:field="*{sexo}"/>
+					<label for="m">Masculino</label>
 				</article>
 				<article>
-					<input type="radio" name="sexo" value="n" th:field="*{sexo}"/>
-					<label>Não definir</label>
+					<input type="radio" name="sexo" id="n" value="n" th:field="*{sexo}"/>
+					<label for="n">Não definir</label>
 				</article>
 			</div>
 			<div th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div><br/>

@@ -9,7 +9,7 @@
 <body>
 	<div class="sideBar" th:fragment="sidebar">
 		<div class="profile">
-			<img th:src="@{/images/profile.jpg}" class="imgProfile" />
+			<img th:src="@{/images/avatars/sloth.png}" class="imgProfile" />
 			<i class="fas fa-award"></i>
 			<h1 class="nameProfile">Karla Christie</h1>
 		</div>
@@ -19,10 +19,12 @@
 				<h1 class="textOption">Responder</h1>
 			</article>
 		</a>
-		<article class="optionSidebar">
-			<i class="fas fa-user"></i>
-			<h1 class="textOption">Perfil</h1>
-		</article>
+		<a href="#" th:href="@{/profile}">
+			<article class="optionSidebar" th:classappend="${module == 'profile' ? 'active' : ''}">
+				<i class="fas fa-user"></i>
+				<h1 class="textOption">Perfil</h1>
+			</article>
+		</a>
 		<a href="#" th:href="@{/criarformulario}">
 			<article class="optionSidebar" th:classappend="${module == 'newForm' ? 'active' : ''}">
 				<i class="fas fa-plus"></i>

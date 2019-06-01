@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/navbar.css}" rel="stylesheet" />
+    <link th:href="@{/css/profile.css}" rel="stylesheet" />
+    <link th:href="@{/css/elements.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <title>Responde Aqui</title>
+</head>
+<body>
+	<div th:insert="fragments/sidebar :: sidebar"> </div>
+    <div th:insert="fragments/navbar :: navbar"></div>
+    <div class="container">
+    	<div class="profileCard">
+    		<img th:src="@{/images/avatars/sloth.png}" class="imgProfile"></img>
+    		<h1 class="nameProfile">Karla Christie, 21
+    		<i class="fas fa-venus"></i>
+    		</h1>
+    		<h1 class="resgistrationProfile">159462</h1>
+    		<button class="button buttonPrimary">Editar</button>
+    	</div>
+    	
+    	<div class="contentProfile">
+    		<div>
+    			<article class="titleInformation">Curso</article>
+    			<h1 class="information">Sistemas e mídias digitais</h1>
+    			<article class="titleInformation">Cidade</article>
+    			<h1 class="information">Fortaleza</h1>
+    			<article class="titleInformation">Campus</article>
+    			<h1 class="information">Pici</h1>
+    			<article class="titleInformation">Turno</article>
+    			<h1 class="information">Matutino</h1>
+    		</div>
+    		<div class="contentLevel">
+    			<h1 class="level">Nível 4</h1>
+    			<i class="fas fa-award"></i>
+    			<h1 class="valueLevel">450</h1>
+    			<h1 class="titleLevel">pontos</h1>
+    			<h1 class="valueLevel">12</h1>
+    			<h1 class="titleLevel">formulários respondidos</h1>
+    			<h1 class="valueLevel">2</h1>
+    			<h1 class="titleLevel">formulários criados</h1>
+    		</div>
+    	</div>
+    </div>
+	
+</body>
+</html>
