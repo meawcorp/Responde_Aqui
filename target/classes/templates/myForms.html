@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
@@ -12,6 +12,10 @@
     <link th:href="@{/css/fragments/navbar.css}" rel="stylesheet" />
     <link th:href="@{/css/fragments/post.css}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+	<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Responde Aqui</title>
 </head>
 <body>
@@ -19,11 +23,29 @@
     <div th:insert="fragments/navbar :: navbar"></div>
     <div class="container">
     
-      <div th:insert="fragments/post :: postEdit"></div>
-      <div th:insert="fragments/post :: postEdit"></div>
-      <div th:insert="fragments/post :: postEdit"></div>
-      <div th:insert="fragments/post :: postEdit"></div>
+	<div  th:unless="${#lists.isEmpty(formularios)}">
+		<div  th:each="formulario : ${formularios}">
+			<div th:id="${formulario.id}">
+				<a href="#" th:href="@{/form}" th:fragment="postEdit">
+					<div class="post editPost">
+						<div class="divTitle">
+							<h1 class="titlePost" th:text="${formulario.titulo}"></h1>
+							<div class="modifyPost">
+								<a href="#" th:href="@{/meusformularios/editar}">
+									<i class="fas fa-pen"></i>
+								</a>
+									<button th:onclick="apagarFormulario([[${formulario.id}]]);">
+										<i class="fas fa-trash"></i>
+									</button>
+							</div>
+						</div>
+						<h1 class="postContent" th:text="${formulario.descricao}"></h1>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
     </div>
-	
+    
 </body>
 </html>

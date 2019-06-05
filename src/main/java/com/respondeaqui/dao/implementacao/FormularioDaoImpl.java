@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -22,14 +25,39 @@ public class FormularioDaoImpl implements FormularioDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public Formulario findById(int id_usuario) {
+	@Autowired DataSource ds;
+	
+	public List<Formulario> findByMatricula(String matricula) {
 		try {
-			return jdbcTemplate.queryForObject(
+			return jdbcTemplate.query(
 					"select * from formulario where id_usuario = ?", 
 					new FormularioRowMapper(), 
-					id_usuario);
+					Integer.parseInt(matricula));
 		} catch (EmptyResultDataAccessException e) {
 			return null;
+		}
+	}
+	
+	public int removerFormulario(int id) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+					"delete from formulario where id=?");
+			ps.setInt(1, id);
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
