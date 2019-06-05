@@ -1,10 +1,14 @@
 package com.respondeaqui.dao;
 
+import java.util.List;
+
 import com.respondeaqui.modelo.Formulario;
 
 public interface FormularioDao {
 	
-	Formulario findById(int id_usuario);
+	List<Formulario> findByMatricula(String matricula);
 	
 	void criarFormulario(Formulario formulario);
+	
+	int removerFormulario(int id);
 }

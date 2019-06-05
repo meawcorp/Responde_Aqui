@@ -37,7 +37,7 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/cadastro", "/login", "/criarformulario", "/css/**", "/webjars/**", "/images/**").permitAll()
+		http.authorizeRequests().antMatchers("/cadastro", "/login", "/criarformulario", "/meusformularios", "/css/**", "/webjars/**", "/images/**").permitAll()
 				.anyRequest().authenticated().and()
 				.formLogin()
 				.loginPage("/login").permitAll()
