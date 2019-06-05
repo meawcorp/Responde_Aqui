@@ -89,16 +89,20 @@
 }
 
 .modifyPost{
-	color: var(--primary);
 	text-align: right;
 }
 
-.modifyPost i{
+.modifyPost i, .modifyPost button{
 	padding: 7px;
 	margin-left: 10px;
 	font-size: 18px;
 	transition: color .5s;
 	margin-top: -10px;
+	background: none;
+	border: none;
+	outline: none;
+	color: var(--primary);
+	cursor: pointer;
 }
 
 .modifyPost i:hover{

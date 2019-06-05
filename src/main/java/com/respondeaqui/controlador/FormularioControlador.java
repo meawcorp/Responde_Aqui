@@ -29,8 +29,8 @@ public class FormularioControlador {
 
 	@GetMapping("/criarformulario")
 	public String criarFormulario(Model model) {
-
 		model.addAttribute("formulario", new Formulario());
+		model.addAttribute("module", "newForm");
 		return "newForm";
 	}
 	
@@ -62,6 +62,7 @@ public class FormularioControlador {
 		List<Formulario> formularios = formularioDao.findByMatricula(usuarioAtual);
 		
 		model.addAttribute("formularios", formularios);
+		model.addAttribute("module", "myForms");
 		return "myForms";
 	}
 	
