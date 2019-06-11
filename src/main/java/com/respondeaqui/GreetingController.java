@@ -83,4 +83,10 @@ public class GreetingController {
 		model.addAttribute("module", "profile");
         return "editProfile";
     }
+	
+	@GetMapping("/ranking")
+    public String ranking(Model model) {
+		model.addAttribute("module", "ranking");
+        return "ranking";
+    }
 }
