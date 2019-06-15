@@ -32,7 +32,7 @@
 			</article>
 		</a>
 		<a href="#" th:href="@{/meusformularios}">
-			<article class="optionSidebar" th:classappend="${module == 'myForms' ? 'active' : ''}">
+			<article class="optionSidebar" th:classappend="${module == 'meusForms' ? 'active' : ''}">
 				<i class="fas fa-folder"></i>
 				<h1 class="textOption">Meus formulários</h1>
 			</article>
@@ -43,10 +43,12 @@
 				<h1 class="textOption">Respondidos</h1>
 			</article>
 		</a>
-		<article class="optionSidebar">
-			<i class="fas fa-trophy"></i>
-			<h1 class="textOption">Ranking</h1>
-		</article>
+		<a href="#" th:href="@{/ranking}">
+			<article class="optionSidebar" th:classappend="${module == 'ranking' ? 'active' : ''}">
+				<i class="fas fa-trophy"></i>
+				<h1 class="textOption">Ranking</h1>
+			</article>
+		</a>
 		<form th:action="@{/logout}" th:method="post">
 		<article class="optionSidebar">
 			<button type="submit" class="buttonLogout">

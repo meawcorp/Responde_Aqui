@@ -1,0 +1,20 @@
+.ranking{
+	background-color: white;
+	border-radius: 10px;
+	padding: 25px 90px;
+	font-family: 'Lato', sans-serif;
+}
+
+.ranking .titleRanking{
+	font-weight: 700;
+	color: var(--primary);
+	font-size: 25px;
+	text-align: center;
+}
+
+.ranking .subtitleRanking{
+	font-weight: 300;
+	color: var(--text);
+	font-size: 20px;
+	text-align: center;
+}

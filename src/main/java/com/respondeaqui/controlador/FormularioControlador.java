@@ -83,7 +83,7 @@ public class FormularioControlador {
 		List<Formulario> formularios = formularioDao.findByUserId(usuarioAtual);
 		
 		model.addAttribute("formularios", formularios);
-		model.addAttribute("module", "myForms");
+		model.addAttribute("module", "meusForms");
 		return "myForms";
 	}
 	
