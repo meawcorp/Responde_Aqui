@@ -37,17 +37,17 @@
 			</div>
 			<div>
 				<input type="text" class="textInput" placeholder="Nome" th:field="*{nome}"/>
-				<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+				<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="errorRegister"></div>
 			</div>
 			<div>
 				<input type="text" class="textInput" placeholder="Matrícula" th:field="*{matricula}"/>
-				<div th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></div>
-				<div th:if="${existe}"><span class="text text-center">Já existe uma conta com esta matrícula</span></div>
+				<div th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}" class="errorRegister"></div>
+				<div th:if="${existe}" class="errorRegister"><span class="text text-center">Já existe uma conta com esta matrícula</span></div>
 			</div>
 			<div>
 				<label>Data de nascimento:</label><br/>
 				<input type="date" class="dateInput" placeholder="Data" th:field="*{dt_nascimento}"/>
-				<div th:if="${#fields.hasErrors('dt_nascimento')}" th:errors="*{dt_nascimento}"></div>
+				<div th:if="${#fields.hasErrors('dt_nascimento')}" th:errors="*{dt_nascimento}" class="errorRegister"></div>
 			</div>
 			<div class="formGender">
 				<label>Sexo:</label>
@@ -64,23 +64,23 @@
 					<label for="n">Não definir</label>
 				</article>
 			</div>
-			<div th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div><br/>
-			<label>Cidade:</label><br/><div th:if="${#fields.hasErrors('id_cidade')}" th:errors="*{id_cidade}"></div>
+			<div th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}" class="errorRegister"></div><br/>
+			<label>Cidade:</label><br/><div th:if="${#fields.hasErrors('id_cidade')}" th:errors="*{id_cidade}" class="errorRegister2"></div>
 			<select class="selectBox" th:field="*{id_cidade}">
 				<option value="0">Selecione</option>
 				<option value="1">Fortaleza</option>
 			</select><br/>
-			<label>Campus:</label><br/><div th:if="${#fields.hasErrors('id_campus')}" th:errors="*{id_campus}"></div>
+			<label>Campus:</label><br/><div th:if="${#fields.hasErrors('id_campus')}" th:errors="*{id_campus}" class="errorRegister2"></div>
 			<select class="selectBox" th:field="*{id_campus}">
 				<option value="0">Selecione</option>
 				<option value="1">Pici</option>
 			</select><br/>
-			<label>Curso:</label><br/><div th:if="${#fields.hasErrors('id_curso')}" th:errors="*{id_curso}"></div>
+			<label>Curso:</label><br/><div th:if="${#fields.hasErrors('id_curso')}" th:errors="*{id_curso}" class="errorRegister2"></div>
 			<select class="selectBox" th:field="*{id_curso}">
 				<option value="0">Selecione</option>
 				<option value="1">Sistemas e Mídias</option>
 			</select><br/>
-			<label>Turno:</label><br/><div th:if="${#fields.hasErrors('turno')}" th:errors="*{turno}"></div>
+			<label>Turno:</label><br/><div th:if="${#fields.hasErrors('turno')}" th:errors="*{turno}" class="errorRegister2"></div>
 			<select class="selectBox" th:field="*{turno}"> 
 				<option value="x">Selecione</option>
 				<option value="m">Matutino</option>
@@ -89,7 +89,7 @@
 				<option value="n">Noturno</option>
 			</select>
 			<input type="password" class="textInput" placeholder="Senha" th:field="*{senha}"/>
-			<div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
+			<div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="errorRegister"></div>
 			
 			<div class="buttons">
 				<input type="button" value="Cancelar" class="button buttonSecundary" />

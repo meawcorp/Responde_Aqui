@@ -54,3 +54,16 @@
 .avatars input[type="radio"]:checked+label img{
     opacity: 0.4;
 }
+
+.errorRegister, .errorRegister2{
+	font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: red;
+    text-align: left;
+}
+
+.errorRegister{
+	margin-top: -20px;
+    margin-bottom: 20px;
+}
