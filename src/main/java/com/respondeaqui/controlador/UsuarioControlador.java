@@ -41,10 +41,6 @@ public class UsuarioControlador {
 			return "register";
 		}
 		
-		//usuario.setCidade(cidadeDao.findByIdCidade(usuario.getId_cidade()).getNome());
-		//usuario.setCampus(campusDao.findByIdCampus(usuario.getId_campus()).getNome());
-		//usuario.setCurso(cursoDao.findByIdCurso(usuario.getId_curso()).getNome());
-		
 		usuarioDao.cadastrarUsuario(usuario);
 		return "login";
 	}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
@@ -12,21 +12,32 @@
     <link th:href="@{/css/fragments/navbar.css}" rel="stylesheet" />
     <link th:href="@{/css/elements.css}" rel="stylesheet" />
     <link th:href="@{/css/newForm.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/post.css}" rel="stylesheet" />
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+	<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <title>Responde Aqui</title>
 </head>
 <body>
 	<div th:insert="fragments/sidebar :: sidebar"> </div>
     <div th:insert="fragments/navbar :: navbar"></div>
+   	<div class="success">Formulário atualizado com sucessso!</div>
+   	<div class="failure">Falha ao atualizar formulario</div>
     <div class="container">
     	<div class="containerNewForm">
 	    	<h1 class="titleNewForm">Edite seu formulário!</h1>
-	    	<form class="formNewForm">
-		    	<input type="text" class="textInput" placeholder="Título"/>
-		    	<input type="text" class="textInput" placeholder="Link"/>
-		    	<textarea rows="5" class="textArea" placeholder="Descrição"></textarea>
+	    	<form class="formNewForm" th:action="@{/editarformulario/{id} (id=${formulario.id})}" th:object="${formulario}" th:method="post">
+		    	<input type="text" id="titulo" class="textInput" placeholder="Título" th:value="${formulario.titulo}" th:field="*{titulo}"/>
+				<div th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+		    	<input type="text" id="link" class="textInput" placeholder="Link" th:value="${formulario.link}" th:field="*{link}"/>
+		    	<div th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></div>
+		    	<textarea rows="5" id="descricao" class="textArea" placeholder="Descrição" th:text="${formulario.descricao}" th:field="*{descricao}"></textarea>
+		    	<div th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
 		    	<label class="label">Data de fechamento:</label><br/>
-		    	<input type="date" class="dateInput" placeholder="Data"/><br/>
+		    	<input id="dt_fechamento" type="date" class="dateInput" placeholder="Data" th:value="${formulario.dt_fechamento}" th:field="*{dt_fechamento}"/><br/>
+		    	<div th:if="${#fields.hasErrors('dt_fechamento')}" th:errors="*{dt_fechamento}"></div>
 	    		<input type="checkbox" id="restrict" onclick="checkRestrict()">
     			<label class="label" for="restrict">Meu formulário é destinado à um público específico.</label><br/>
     			<h1 class="subtitleCheckbox">Você pode restringir seu formulário por cidade, campus, curso, turno e sexo.</h1>
@@ -58,32 +69,26 @@
 	    		</div>
 	    		
 	    		<div class="selects" id="selectCidade">
-					<label>Cidade:</label><br/>
-					<select class="selectBox">
-						<option>Cidade 1</option>
-						<option>Cidade 2</option>
-						<option>Cidade 3</option>
-						<option>Cidade 4</option>
+					<label>Cidade:</label><br/><div th:if="${#fields.hasErrors('id_cidade')}" th:errors="*{id_cidade}"></div>
+					<select id="selectCidade" class="selectBox" th:field="*{id_cidade}">
+						<option value="0">Selecione</option>
+						<option value="1">Fortaleza</option>
 					</select>
 				</div>
 				
 				<div class="selects" id="selectCampus">
-					<label>Campus:</label><br/>
-					<select class="selectBox">
-						<option>Campus 1</option>
-						<option>Campus 2</option>
-						<option>Campus 3</option>
-						<option>Campus 4</option>
+					<label>Campus:</label><br/><div th:if="${#fields.hasErrors('id_campus')}" th:errors="*{id_campus}"></div>
+					<select id="selectCampus" class="selectBox" th:field="*{id_campus}">
+						<option value="0">Selecione</option>
+						<option value="1">Pici</option>
 					</select>
 				</div>
 				
 				<div class="selects" id="selectCurso">
-					<label>Curso:</label><br/>
-					<select class="selectBox">
-						<option>Curso 1</option>
-						<option>Curso 2</option>
-						<option>Curso 3</option>
-						<option>Curso 4</option>
+					<label>Curso:</label><br/><div th:if="${#fields.hasErrors('id_curso')}" th:errors="*{id_curso}"></div>
+					<select id="selectCurso" class="selectBox" th:field="*{id_curso}">
+						<option value="0">Selecione</option>
+						<option value="1">Sistemas e Mídias</option>
 					</select>
 				</div>
 	    		
@@ -99,19 +104,22 @@
 				
 				<div class="selects" id="selectSexo">
 					<label>Sexo:</label><br/>
-					<select class="selectBox">
-						<option>Masculino</option>
-						<option>Feminino</option>
+					<select id="selectSexo" class="selectBox" th:field="*{sexo}">
+						<option value="m">Masculino</option>
+						<option value="f">Feminino</option>
 					</select>
+					<div th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div>
 				</div>
 	    		
 	    		<div class="buttons">
-					<input type="button" value="Cancelar" class="button buttonSecundary" />
-					<input type="submit" value="Cadastrar" class="button buttonPrimary" />
+		    		<a th:href="@{/meusformularios}">
+						<input type="button"  value="Cancelar" class="button buttonSecundary" />
+					</a>
+					<input th:onclick="editarFormulario(descricao.value, [[${formulario.dt_criacao}]], dt_fechamento.value, [[${formulario.id}]], selectCampus.value, selectCidade.value, selectCurso.value, [[${formulario.id_usuario}]], link.value, [[${formulario.n_respostas}]], selectSexo.value, titulo.value, [[${formulario.turno}]]);" value="Cadastrar" class="button buttonPrimary" />
 				</div>
 	    	</form>
     	</div>
-    </div>
+   	</div>
 	
 </body>
 

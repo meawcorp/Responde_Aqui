@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
@@ -18,10 +18,11 @@
 	<div th:insert="fragments/sidebar :: sidebar"> </div>
     <div th:insert="fragments/navbar :: navbar"></div>
     <div class="container">
-      <div th:insert="fragments/post :: post"></div>
-      <div th:insert="fragments/post :: post"></div>
-      <div th:insert="fragments/post :: post"></div>
-      <div th:insert="fragments/post :: post"></div>
+    	<div  th:unless="${#lists.isEmpty(formularios)}">
+		<div  th:each="formulario : ${formularios}">
+			<div th:insert="fragments/post :: post"></div>
+		</div>
+		</div>
     </div>
 	
 </body>

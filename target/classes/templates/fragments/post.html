@@ -4,10 +4,12 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta th:name="_csrf" th:content="${_csrf.token}"/>
+	<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
 
 <body>
-	<a href="#" th:href="@{/form}" th:fragment="post">
+	<a href="#" th:onclick="responderFormulario([[${formulario.id}]]);" th:fragment="post">
 		<div class="post">
 			<div class="userPost">
 				<img th:src="@{/images/avatars/sheep.png}" class="imgUserPost" />

@@ -6,9 +6,13 @@ import com.respondeaqui.modelo.Formulario;
 
 public interface FormularioDao {
 	
-	List<Formulario> findByMatricula(String matricula);
+	Formulario findById(int id);
+	
+	List<Formulario> findByUserId(String matricula);
 	
 	void criarFormulario(Formulario formulario);
 	
 	int removerFormulario(int id);
+	
+	int editarFormulario(Formulario formulario);
 }
