@@ -17,4 +17,54 @@
 	color: var(--text);
 	font-size: 20px;
 	text-align: center;
+	margin-bottom: 30px;
+}
+
+.ranking .user{
+	display: grid;
+	grid-template-columns: 150px 1fr 1fr;
+	grid-gap: 20px;
+	align-items: center;
+}
+
+.ranking .user .place{
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	color: var(--secundary);
+	font-size: 18px;
+}
+
+.ranking .user .punctuation{
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	color: var(--text);
+	font-size: 18px;
+}
+
+.ranking .user div{
+	display: flex;
+	align-items: center;
+}
+
+.ranking .user div h1{
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
+	color: var(--primary);
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+.ranking .user div img{
+	width: 40px;
+	height: 40px;
+	border: 1px solid var(--primary);
+}
+
+.ranking .line{
+	height: 1px;
+	width: 100%;
+	background: var(--secundary);
+	opacity: .2;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
