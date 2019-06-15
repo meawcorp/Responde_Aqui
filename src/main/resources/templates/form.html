@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
@@ -21,9 +21,9 @@
     <div th:insert="fragments/navbar :: navbar"></div>
     <div class="container">
     	<div class="form">
-	    	<h1 class="titleForm">Pesquisa sobre experiência audiovisual no SMD</h1>
-			<h1 class="descriptionForm">Olá pessoas, tudo bom? Somos a equipe PLANO, da disciplina de Projeto II. Contamos com sua ajuda para responder esse pequeno questionário sobre sua relação com os projetos audiovisuais desenvolvidos no curso. As informações obtidas através desse formulário são apenas para uso do projeto em questão. Respondê-lo dura em média 5 minutos. 
-	Gratos pela ajuda <3</h1>
+	    	<h1 class="titleForm" th:text="${formulario.titulo}">Pesquisa sobre experiência audiovisual no SMD</h1>
+			<h1 class="descriptionForm" th:text="${formulario.descricao}">Olá pessoas, tudo bom? Somos a equipe PLANO, da disciplina de Projeto II. Contamos com sua ajuda para responder esse pequeno questionário sobre sua relação com os projetos audiovisuais desenvolvidos no curso. As informações obtidas através desse formulário são apenas para uso do projeto em questão. Respondê-lo dura em média 5 minutos. 
+	Gratos pela ajuda</h1>
 			<div class="infosForm">
 				<div class="tags">
 					<h1 class="titleResponse titleTags">Público:</h1>
@@ -35,7 +35,7 @@
 				</div>
 				<div class="response">
 					<h1 class="titleResponse">Respostas:</h1>
-					<h1 class="numberResponse">18</h1>
+					<h1 class="numberResponse" th:text="${formulario.n_respostas}">18</h1>
 				</div>
 			</div>
 			<div class="userPost">
@@ -46,7 +46,7 @@
 	            </div>
 	        </div>
 	        <iframe 
-	        	src="https://docs.google.com/forms/d/e/1FAIpQLSeESNpgT29zMKFdiSg9sybv0W1tRad22o_oB2eh4GxslBpuBw/viewform?embedded=true" 
+	        	th:src="@{https://docs.google.com/forms/d/e/{link}/viewform?embedded=true (link=${formulario.link})}"
 	        	width="80%" height="600" 
 	        	frameborder="0" 
 	        	marginheight="0" 

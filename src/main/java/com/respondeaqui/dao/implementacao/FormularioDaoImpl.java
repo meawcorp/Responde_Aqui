@@ -27,7 +27,18 @@ public class FormularioDaoImpl implements FormularioDao {
 	
 	@Autowired DataSource ds;
 	
-	public List<Formulario> findByMatricula(String matricula) {
+	public Formulario findById(int id) {
+		try {
+			return jdbcTemplate.queryForObject(
+					"select * from formulario where id = ?", 
+					new FormularioRowMapper(), 
+					id);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public List<Formulario> findByUserId(String matricula) {
 		try {
 			return jdbcTemplate.query(
 					"select * from formulario where id_usuario = ?", 
@@ -44,7 +55,7 @@ public class FormularioDaoImpl implements FormularioDao {
 		try {
 			con = ds.getConnection();
 			ps = con.prepareStatement(
-					"delete from formulario where id=?");
+					"delete from formulario where id = ?");
 			ps.setInt(1, id);
 			return ps.executeUpdate();
 		} catch (SQLException e) {
@@ -83,6 +94,37 @@ public class FormularioDaoImpl implements FormularioDao {
 				return ps;
 			}
 		});
+	}
+	
+	public int editarFormulario(Formulario formulario) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+					"update formulario set link = ?, titulo = ?, descricao = ?, dt_fechamento = ?, sexo = ?, id_cidade = ?, id_campus = ?, id_curso = ? where id = ?");
+			ps.setString(1, formulario.getLink());
+			ps.setString(2, formulario.getTitulo());
+			ps.setString(3, formulario.getDescricao());
+			ps.setDate(4, Date.valueOf(formulario.convertToLocalDate(formulario.getDt_fechamento())));
+			ps.setString(5, String.valueOf(formulario.getSexo()));
+			ps.setInt(6, formulario.getId_cidade());
+			ps.setInt(7, formulario.getId_campus());
+			ps.setInt(8, formulario.getId_curso());
+			ps.setInt(9, formulario.getId());
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }

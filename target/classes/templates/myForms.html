@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>
     <meta th:name="_csrf" th:content="${_csrf.token}"/>
 	<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Responde Aqui</title>
@@ -21,30 +22,32 @@
 <body>
 	<div th:replace="fragments/sidebar :: sidebar" > </div>
     <div th:insert="fragments/navbar :: navbar"></div>
+    <div class="success">Formulário removido com sucessso!</div>
+    <div class="failure">Falha ao remover formulario</div>
     <div class="container">
-    
-	<div  th:unless="${#lists.isEmpty(formularios)}">
-		<div  th:each="formulario : ${formularios}">
-			<div th:id="${formulario.id}">
-				<a href="#" th:href="@{/form}" th:fragment="postEdit">
-					<div class="post editPost">
-						<div class="divTitle">
-							<h1 class="titlePost" th:text="${formulario.titulo}"></h1>
-							<div class="modifyPost">
-								<a href="#" th:href="@{/meusformularios/editar}">
-									<i class="fas fa-pen"></i>
-								</a>
-									<button th:onclick="apagarFormulario([[${formulario.id}]]);">
-										<i class="fas fa-trash"></i>
-									</button>
+		<div  th:unless="${#lists.isEmpty(formularios)}">
+			<div  th:each="formulario : ${formularios}">
+				<div th:id="${formulario.id}">
+					<!--form id="resp_form" th:action="@{/responderformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}" th:method="post"-->
+						<a th:href="@{/responderformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}" th:fragment="postEdit">
+							<div class="post editPost">
+								<div class="divTitle">
+									<h1 class="titlePost" th:text="${formulario.titulo}"></h1>
+										<div class="modifyPost">
+											<a th:href="@{/editarformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}">
+												<i class="fas fa-pen"></i>
+											</a>
+											<button th:onclick="apagarFormulario([[${formulario.id}]]);">
+												<i class="fas fa-trash"></i>
+											</button>
+										</div>
+								</div>
+								<h1 class="postContent" th:text="${formulario.descricao}"></h1>
 							</div>
-						</div>
-						<h1 class="postContent" th:text="${formulario.descricao}"></h1>
-					</div>
-				</a>
+						</a>
+				</div>
 			</div>
 		</div>
-	</div>
     </div>
     
 </body>

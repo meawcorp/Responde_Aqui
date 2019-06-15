@@ -34,7 +34,7 @@ public class Formulario {
 		return link;
 	}
 	public void setLink(String link) {
-		this.link = link;
+		this.link = extrairLink(link);
 	}
 	public String getTitulo() {
 		return titulo;
@@ -105,6 +105,12 @@ public class Formulario {
 		this.id_curso = id_curso;
 	}
 	
+    public String extrairLink(String link_form) {
+		String link = link_form;
+		link = link.replace("https://docs.google.com/forms/d/e/", "").replace("/viewform?usp=sf_link", "");
+		return  link;
+    }
+    
 	public LocalDate convertToLocalDate(Date dateToConvert) {
 	    return dateToConvert.toInstant()
 	      .atZone(ZoneId.systemDefault())
