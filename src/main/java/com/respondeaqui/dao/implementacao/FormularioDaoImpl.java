@@ -39,6 +39,17 @@ public class FormularioDaoImpl implements FormularioDao {
 		}
 	}
 	
+	public List<Formulario> findByMatricula(String matricula) {
+		try {
+			return jdbcTemplate.query(
+					"SELECT * FROM formulario AS form, usuario AS usr WHERE (form.id_usuario = usr.matricula) AND form.id IN (SELECT f.id FROM formulario AS f, formularios_respondidos AS form_resp WHERE f.id = form_resp.id_formulario AND form_resp.id_usuario = ?)",
+					new FormularioRowMapper(),
+					Integer.parseInt(matricula));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
 	public List<Formulario> findByUserId(String matricula) {
 		try {
 			return jdbcTemplate.query(
@@ -53,7 +64,7 @@ public class FormularioDaoImpl implements FormularioDao {
 	public List<Formulario> findByUser(Usuario usuario) {
 		try {
 			return jdbcTemplate.query(
-					"SELECT * FROM formulario AS form, usuario AS usr WHERE form.id_usuario = usr.matricula AND form.id_usuario <> ? AND form.sexo = ? OR form.sexo = null AND form.turno = ? OR form.turno = null AND form.id_cidade = ? OR form.id_cidade = null AND form.id_campus = ? OR form.id_campus = null AND form.id_curso = ? OR form.id_curso = null", 
+					"SELECT * FROM formulario AS form, usuario AS usr WHERE (form.id_usuario = usr.matricula) AND form.id NOT IN (SELECT f.id FROM formulario AS f, formularios_respondidos AS form_resp WHERE f.id = form_resp.id_formulario) AND (form.id_usuario <> ?) AND (form.sexo = ? OR form.sexo = null) AND (form.turno = ? OR form.turno = null) AND (form.id_cidade = ? OR form.id_cidade = null) AND (form.id_campus = ? OR form.id_campus = null) AND (form.id_curso = ? OR form.id_curso = null)", 
 					new FormularioRowMapper(), 
 					Integer.parseInt(usuario.getMatricula()), usuario.getSexo(), usuario.getTurno(), usuario.getId_cidade(), usuario.getId_campus(), usuario.getId_curso());
 		} catch (EmptyResultDataAccessException e) {
@@ -106,6 +117,66 @@ public class FormularioDaoImpl implements FormularioDao {
 				return ps;
 			}
 		});
+	}
+	
+	public void confirmarRespostaForm(int id, String matricula) {
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement ps = con.prepareStatement(
+						"insert into formularios_respondidos (id_formulario, id_usuario)"
+						+ "values (?, ?)");
+				ps.setInt(1, id);
+				ps.setInt(2, Integer.parseInt(matricula));
+				return ps;
+			}
+		});
+	}
+	
+	public int atualizarNumRespostas(int id) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+					"UPDATE formulario SET n_respostas = n_respostas + 1 WHERE formulario.id = ?");
+			ps.setInt(1, id);
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public int atualizarPontos(String matricula) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+					"UPDATE usuario SET pontos = pontos + 100 WHERE usuario.matricula = ?");
+			ps.setInt(1, Integer.parseInt(matricula));
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	public int editarFormulario(Formulario formulario) {

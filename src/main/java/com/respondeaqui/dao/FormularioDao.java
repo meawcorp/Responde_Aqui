@@ -9,9 +9,17 @@ public interface FormularioDao {
 	
 	Formulario findById(int id);
 	
+	int atualizarNumRespostas(int id);
+	
+	int atualizarPontos(String matricula);
+	
+	void confirmarRespostaForm(int id, String matricula);
+	
 	List<Formulario> findByUserId(String matricula);
 
 	List<Formulario> findByUser(Usuario usuario);
+	
+	List<Formulario> findByMatricula(String matricula);
 	
 	void criarFormulario(Formulario formulario);
 	

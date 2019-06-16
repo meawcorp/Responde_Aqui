@@ -32,7 +32,7 @@ public class FormularioControlador {
 	private UsuarioServico usuarioServico;
 	
 	@GetMapping("/responderformulario")
-	public String exibirFormulariosResp(Model model) {
+	public String exibirResponderFormularios(Model model) {
 		
 		List<Formulario> formularios = formularioDao.findByUser(usuarioServico.getUsuario());
 		
@@ -49,6 +49,17 @@ public class FormularioControlador {
 		model.addAttribute("formulario", formulario);
 		model.addAttribute("usuario", usuarioServico.getUsuario());
 		return "form";
+	}
+	
+	@PostMapping("/responderformulario/{id}")
+	public String confirmarRespostaFormulario(Model model, @PathVariable("id") int id) {
+		
+		formularioDao.confirmarRespostaForm(id, usuarioServico.getMatricula());
+		formularioDao.atualizarNumRespostas(id);
+		int rs = formularioDao.atualizarPontos(usuarioServico.getMatricula());
+		model.addAttribute("response", rs);
+		model.addAttribute("usuario", usuarioServico.getUsuario());
+		return "timeline";
 	}
 	
 	@GetMapping("/criarformulario")
@@ -85,6 +96,17 @@ public class FormularioControlador {
 		model.addAttribute("usuario", usuarioServico.getUsuario());
 		model.addAttribute("module", "meusForms");
 		return "myForms";
+	}
+	
+	@GetMapping("/formulariosrespondidos")
+	public String exibirFormulariosRespondidos(Model model) {
+		
+		List<Formulario> formularios = formularioDao.findByMatricula(usuarioServico.getMatricula());
+		
+		model.addAttribute("formularios", formularios);
+		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("module", "meusForms");
+		return "answeredForms";
 	}
 	
 	@RequestMapping(value = "/meusformularios", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -28,7 +28,7 @@
 		<div  th:unless="${#lists.isEmpty(formularios)}">
 			<div  th:each="formulario : ${formularios}">
 				<div th:id="${formulario.id}">
-					<a th:href="@{/responderformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}" th:fragment="postEdit">
+					<a th:href="@{/responderformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}">
 						<div class="post editPost">
 							<div class="divTitle">
 								<h1 class="titlePost" th:text="${formulario.titulo}"></h1>
