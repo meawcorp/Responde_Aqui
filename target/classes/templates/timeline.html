@@ -18,31 +18,13 @@
 	<div th:insert="fragments/sidebar :: sidebar"> </div>
     <div th:insert="fragments/navbar :: navbar"></div>
     <div class="container">
-    	<div  th:unless="${#lists.isEmpty(formularios)}">
-		<div  th:each="formulario : ${formularios}">
-        	<a th:href="@{/responderformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}" th:fragment="post">
-                <div class="post">
-                    <div class="userPost">
-                        <img th:src="@{/images/avatars/{foto}.png (foto=${formulario.usuario.foto})}" class="imgUserPost" />
-                        <div>
-                            <h1 class="nameUserPost" th:text="${formulario.usuario.nome}">Giovanna Lima</h1>
-                            <h1 class="timePost" th:text="${#dates.format(formulario.dt_fechamento, 'dd-MMMM-yyyy')}">21h</h1>
-                        </div>
-                        <div class="qtdReply">
-                            <i class="fas fa-reply"></i>
-                            <h1 class="reply" th:text="${formulario.n_respostas}">15</h1>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <h1 class="titlePost" th:text="${formulario.titulo}">Pesquisa sobre segurança noturna no Campus do Pici</h1>
-                        <h1 class="postContent" th:text="${formulario.descricao}">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum...</h1>
-                    </div>
-                </div>
-            </a>
-		</div>
-		</div>
+        <div  th:if="${response}">
+       		Sua resposta foi resgistrada com secesso.
+       	</div>
+       	<div  th:if="${#lists.isEmpty(formularios)}">
+       		No momento, você não possui formulários com seu perfil.
+       	</div>
+		<div th:insert="fragments/post :: post"></div>
     </div>
 </body>
 </html>

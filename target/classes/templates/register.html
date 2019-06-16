@@ -25,14 +25,14 @@
 			<div>
 				<label>Escolha seu avatar:</label>
 				<div class="avatars">
-					<input type="radio" name="avatar" id="avatar1" value="1"/>
-					<label for="avatar1"><img th:src="@{/images/avatars/sheep.png}" class="imgUserPost"/></label>
-					<input type="radio" name="avatar" id="avatar2" value="2"/>
-					<label for="avatar2"><img th:src="@{/images/avatars/spider.png}" class="imgUserPost"/></label>
-					<input type="radio" name="avatar" id="avatar3" value="3"/>
-					<label for="avatar3"><img th:src="@{/images/avatars/sloth.png}" class="imgUserPost"/></label>
-					<input type="radio" name="avatar" id="avatar4" value="4"/>
-					<label for="avatar4"><img th:src="@{/images/avatars/bear.png}" class="imgUserPost"/></label>
+					<input type="radio" name="avatar" id="avatar1" value="1" th:field="*{foto}"/>
+					<label for="avatar1"><img th:src="@{/images/avatars/1.png}" class="imgUserPost"/></label>
+					<input type="radio" name="avatar" id="avatar2" value="2" th:field="*{foto}"/>
+					<label for="avatar2"><img th:src="@{/images/avatars/2.png}" class="imgUserPost"/></label>
+					<input type="radio" name="avatar" id="avatar3" value="3" th:field="*{foto}"/>
+					<label for="avatar3"><img th:src="@{/images/avatars/3.png}" class="imgUserPost"/></label>
+					<input type="radio" name="avatar" id="avatar4" value="4" th:field="*{foto}"/>
+					<label for="avatar4"><img th:src="@{/images/avatars/4.png}" class="imgUserPost"/></label>
 				</div>
 			</div>
 			<div>

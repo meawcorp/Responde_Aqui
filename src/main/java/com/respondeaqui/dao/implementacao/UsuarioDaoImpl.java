@@ -38,8 +38,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement ps = con.prepareStatement(
-						"insert into usuario (matricula, nome, senha, dt_nascimento, turno, sexo, pontos, foto)"
-						+ "values (?, ?, ?, ?, ?, ?, ?, ?)");
+						"insert into usuario (matricula, nome, senha, dt_nascimento, turno, sexo, pontos, foto, id_cidade, id_campus, id_curso)"
+						+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 				ps.setInt(1, Integer.parseInt(usuario.getMatricula()));
 				ps.setString(2, usuario.getNome());
 				ps.setString(3, new BCryptPasswordEncoder().encode(usuario.getSenha()));
@@ -48,6 +48,9 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				ps.setString(6, String.valueOf(usuario.getSexo()));
 				ps.setInt(7, usuario.getPontos());
 				ps.setInt(8, usuario.getFoto());
+				ps.setInt(9, usuario.getId_cidade());
+				ps.setInt(10, usuario.getId_campus());
+				ps.setInt(11, usuario.getId_curso());
 				return ps;
 			}
 		});
