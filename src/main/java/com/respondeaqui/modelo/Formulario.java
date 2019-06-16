@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Formulario {
+	private Usuario usuario;
 	private int id;
 	private String link;
 	private String titulo;
@@ -24,6 +25,14 @@ public class Formulario {
 	
 	public Formulario(){}
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public int getId() {
 		return id;
 	}

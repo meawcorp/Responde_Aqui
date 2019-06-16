@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.respondeaqui.dao.FormularioDao;
 import com.respondeaqui.dao.mapper.FormularioRowMapper;
 import com.respondeaqui.modelo.Formulario;
+import com.respondeaqui.modelo.Usuario;
 
 @Repository
 public class FormularioDaoImpl implements FormularioDao {
@@ -30,7 +31,7 @@ public class FormularioDaoImpl implements FormularioDao {
 	public Formulario findById(int id) {
 		try {
 			return jdbcTemplate.queryForObject(
-					"select * from formulario where id = ?", 
+					"SELECT * FROM formulario AS form, usuario AS usr WHERE form.id_usuario = usr.matricula AND form.id = ?", 
 					new FormularioRowMapper(), 
 					id);
 		} catch (EmptyResultDataAccessException e) {
@@ -41,9 +42,20 @@ public class FormularioDaoImpl implements FormularioDao {
 	public List<Formulario> findByUserId(String matricula) {
 		try {
 			return jdbcTemplate.query(
-					"select * from formulario where id_usuario = ?", 
+					"SELECT * FROM formulario AS form, usuario AS usr WHERE form.id_usuario = usr.matricula AND form.id_usuario = ?", 
 					new FormularioRowMapper(), 
 					Integer.parseInt(matricula));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	public List<Formulario> findByUser(Usuario usuario) {
+		try {
+			return jdbcTemplate.query(
+					"SELECT * FROM formulario AS form, usuario AS usr WHERE form.id_usuario = usr.matricula AND form.id_usuario <> ? AND form.sexo = ? OR form.sexo = null AND form.turno = ? OR form.turno = null AND form.id_cidade = ? OR form.id_cidade = null AND form.id_campus = ? OR form.id_campus = null AND form.id_curso = ? OR form.id_curso = null", 
+					new FormularioRowMapper(), 
+					Integer.parseInt(usuario.getMatricula()), usuario.getSexo(), usuario.getTurno(), usuario.getId_cidade(), usuario.getId_campus(), usuario.getId_curso());
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

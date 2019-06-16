@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -9,11 +8,11 @@
 <body>
 	<div class="sideBar" th:fragment="sidebar">
 		<div class="profile">
-			<img th:src="@{/images/avatars/sloth.png}" class="imgProfile" />
+			<img th:src="@{/images/avatars/{foto}.png (foto=${usuario.foto})}" class="imgProfile" />
 			<!-- <i class="fas fa-award"></i> -->
-			<h1 class="nameProfile">Karla Christie</h1>
+			<h1 class="nameProfile" th:text="${usuario.nome}">Karla Christie</h1>
 		</div>
-		<a href="#" th:href="@{/timeline}">
+		<a href="#" th:href="@{/responderformulario}">
 			<article class="optionSidebar" th:classappend="${module == 'timeline' ? 'active' : ''}">
 				<i class="fas fa-clipboard-list"></i>
 				<h1 class="textOption">Responder</h1>
