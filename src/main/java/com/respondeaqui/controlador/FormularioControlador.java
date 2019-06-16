@@ -73,6 +73,7 @@ public class FormularioControlador {
 		
 		formularioDao.criarFormulario(formulario);
 		model.addAttribute("formulario", new Formulario());
+		model.addAttribute("usuario", usuarioServico.getUsuario());
 		return "newForm";
 	}
 	
