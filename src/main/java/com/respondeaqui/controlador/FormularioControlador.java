@@ -6,8 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.respondeaqui.dao.FormularioDao;
-import com.respondeaqui.dao.UsuarioDao;
 import com.respondeaqui.modelo.Formulario;
-import com.respondeaqui.modelo.Usuario;
+import com.respondeaqui.servico.UsuarioServico;
 
 @Controller
 public class FormularioControlador {
@@ -32,19 +29,25 @@ public class FormularioControlador {
 	private FormularioDao formularioDao;
 	
 	@Autowired
-	private UsuarioDao usuarioDao;
+	private UsuarioServico usuarioServico;
 	
+	@GetMapping("/responderformulario")
+	public String exibirFormulariosResp(Model model) {
+		
+		List<Formulario> formularios = formularioDao.findByUser(usuarioServico.getUsuario());
+		
+		model.addAttribute("formularios", formularios);
+		model.addAttribute("usuario", usuarioServico.getUsuario());
+		return "timeline";
+	}
+
 	@GetMapping("/responderformulario/{id}/{titulo}")
 	public String responderFormulario(Model model, @PathVariable("id") int id) {
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String usuarioAtual = authentication.getName();
-		
-		Usuario usuario = usuarioDao.findByMatricula(usuarioAtual);
 		Formulario formulario = formularioDao.findById(id);
 		
 		model.addAttribute("formulario", formulario);
-		model.addAttribute("usuario", usuario);
+		model.addAttribute("usuario", usuarioServico.getUsuario());
 		return "form";
 	}
 	
@@ -52,21 +55,20 @@ public class FormularioControlador {
 	public String criarFormulario(Model model) {
 
 		model.addAttribute("formulario", new Formulario());
+		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("module", "newForm");
 		return "newForm";
 	}
 	
 	@PostMapping("/criarformulario")
     public String criarFormulario(Model model, @Valid Formulario formulario, BindingResult bindingResult) {
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String usuarioAtual = authentication.getName();
-		
 		if(bindingResult.hasErrors()) {
 			System.out.println(bindingResult);
 			return "newForm";
 		}
 		
-		formulario.setId_usuario(usuarioAtual);
+		formulario.setId_usuario(usuarioServico.getMatricula());
 		formulario.setDt_criacao(new Date());
 		
 		formularioDao.criarFormulario(formulario);
@@ -77,12 +79,11 @@ public class FormularioControlador {
 	@GetMapping("/meusformularios")
 	public String exibirMeusFormularios(Model model) {
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String usuarioAtual = authentication.getName();
-		
-		List<Formulario> formularios = formularioDao.findByUserId(usuarioAtual);
+		List<Formulario> formularios = formularioDao.findByUserId(usuarioServico.getMatricula());
 		
 		model.addAttribute("formularios", formularios);
+		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("module", "meusForms");
 		return "myForms";
 	}
 	
@@ -98,6 +99,7 @@ public class FormularioControlador {
 		Formulario formulario = formularioDao.findById(id);
 
 		model.addAttribute("formulario", formulario);
+		model.addAttribute("usuario", usuarioServico.getUsuario());
 		return "editForm";
 	}
 	

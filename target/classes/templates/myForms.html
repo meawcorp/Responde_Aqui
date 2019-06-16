@@ -28,23 +28,22 @@
 		<div  th:unless="${#lists.isEmpty(formularios)}">
 			<div  th:each="formulario : ${formularios}">
 				<div th:id="${formulario.id}">
-					<!--form id="resp_form" th:action="@{/responderformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}" th:method="post"-->
-						<a th:href="@{/responderformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}" th:fragment="postEdit">
-							<div class="post editPost">
-								<div class="divTitle">
-									<h1 class="titlePost" th:text="${formulario.titulo}"></h1>
-										<div class="modifyPost">
-											<a th:href="@{/editarformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}">
-												<i class="fas fa-pen"></i>
-											</a>
-											<button th:onclick="apagarFormulario([[${formulario.id}]]);">
-												<i class="fas fa-trash"></i>
-											</button>
-										</div>
+					<a th:href="@{/responderformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}" th:fragment="postEdit">
+						<div class="post editPost">
+							<div class="divTitle">
+								<h1 class="titlePost" th:text="${formulario.titulo}"></h1>
+									<div class="modifyPost">
+										<a th:href="@{/editarformulario/{id}/{titulo} (id=${formulario.id}, titulo=${formulario.titulo})}">
+											<i class="fas fa-pen"></i>
+										</a>
+										<button th:onclick="apagarFormulario([[${formulario.id}]]);">
+											<i class="fas fa-trash"></i>
+										</button>
+									</div>
 								</div>
-								<h1 class="postContent" th:text="${formulario.descricao}"></h1>
-							</div>
-						</a>
+							<h1 class="postContent" th:text="${formulario.descricao}"></h1>
+						</div>
+					</a>
 				</div>
 			</div>
 		</div>

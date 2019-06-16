@@ -6,6 +6,8 @@ import com.respondeaqui.dao.UsuarioDao;
 import com.respondeaqui.modelo.Usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Service
 public class UsuarioServico {
@@ -21,5 +23,18 @@ public class UsuarioServico {
 			return true;
 		}
 			return false;
+	}
+	
+	public Usuario getUsuario() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String matricula = authentication.getName();
+		Usuario usuario = usuarioDao.findByMatricula(matricula);
+		return usuario;
+	}
+	
+	public String getMatricula() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String matricula = authentication.getName();
+		return matricula;
 	}
 }
