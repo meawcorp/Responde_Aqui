@@ -1,3 +1,53 @@
+$(document).ready(function(){
+	$('#cidade-select').change(function() {
+		var id_cidade = $("option:selected", this).val();
+		   
+		$.ajax({
+			type: 'GET',
+			url: '/selectcampus/' + id_cidade,
+			dataType: "json",
+			contentType: "application/json",
+			success: function(campus){
+	            if (campus.length !== 0) {
+	            	if($('.options')[0]){
+	            		$('#campus-select').find('.options').remove();
+	            	}
+	                $(campus).each(function (i, camp) {
+	                    $('<option>').val(camp.id).text(camp.nome).addClass('options').appendTo('#campus-select');
+	                });
+	            }else{
+	            	$('#campus-select').find('.options').remove();
+	            }
+			}
+		});
+	});
+	
+	$('#campus-select').change(function() {
+		var id_campus = $("option:selected", this).val();
+		   
+		$.ajax({
+			type: 'GET',
+			url: '/selectcurso/' + id_campus,
+			dataType: "json",
+			contentType: "application/json",
+			success: function(cursos){
+	            if (cursos.length !== 0) {
+	            	if($('.options')[0]){
+	            		$('#curso-select').find('.options').remove();
+	            	}
+	                $(cursos).each(function (i, curso) {
+	                    $('<option>').val(curso.id).text(curso.nome).addClass('options').appendTo('#curso-select');
+	                });
+	            }else{
+	            	$('#curso-select').find('.options').remove();
+	            }
+			}
+		});
+	});
+	
+});
+
+
 function apagarFormulario(id){
 
 	var header = $("meta[name='_csrf_header']").attr("content");

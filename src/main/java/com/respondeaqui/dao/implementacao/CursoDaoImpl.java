@@ -1,5 +1,7 @@
 package com.respondeaqui.dao.implementacao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,12 +17,12 @@ public class CursoDaoImpl implements CursoDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public Curso findByIdCurso(int id_curso) {
+	public List<Curso> findByCampusId(int id_campus) {
 		try {
-			return jdbcTemplate.queryForObject(
-					"select * from campus_curso where id_campus = ?", 
+			return jdbcTemplate.query(
+					"SELECT curso.nome, curso.id, id_campus FROM campus, curso, campus_curso WHERE curso.id = campus_curso.id_curso AND campus.id = ?", 
 					new CursoRowMapper(), 
-					id_curso);
+					id_campus);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
