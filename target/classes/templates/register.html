@@ -6,13 +6,16 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link th:rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" th:integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" th:crossorigin="anonymous">
+    <link th:rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link th:href="@{/css/index.css}" rel="stylesheet" />
     <link th:href="@{/css/fragments/bannerInitial.css}" rel="stylesheet" />
     <link th:href="@{/css/elements.css}" rel="stylesheet" />
     <link th:href="@{/css/login.css}" rel="stylesheet" />
     <link th:href="@{/css/register.css}" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>
+    <link th:href="@{https://fonts.googleapis.com/css?family=Lato:300,400,700}" th:rel="stylesheet">
     <title>Responde Aqui</title>
 </head>
 <body>
@@ -66,19 +69,19 @@
 			</div>
 			<div th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div><br/>
 			<label>Cidade:</label><br/><div th:if="${#fields.hasErrors('id_cidade')}" th:errors="*{id_cidade}"></div>
-			<select class="selectBox" th:field="*{id_cidade}">
+			<select id="cidade-select" class="selectBox" th:field="*{id_cidade}">
 				<option value="0">Selecione</option>
-				<option value="1">Fortaleza</option>
+				<option th:each="cidade : ${cidades}" 
+					th:value="${cidade.id}" 
+					th:text="${cidade.nome}"></option>
 			</select><br/>
 			<label>Campus:</label><br/><div th:if="${#fields.hasErrors('id_campus')}" th:errors="*{id_campus}"></div>
-			<select class="selectBox" th:field="*{id_campus}">
+			<select id="campus-select" class="selectBox" th:field="*{id_campus}">
 				<option value="0">Selecione</option>
-				<option value="1">Pici</option>
 			</select><br/>
 			<label>Curso:</label><br/><div th:if="${#fields.hasErrors('id_curso')}" th:errors="*{id_curso}"></div>
-			<select class="selectBox" th:field="*{id_curso}">
+			<select id="curso-select" class="selectBox" th:field="*{id_curso}">
 				<option value="0">Selecione</option>
-				<option value="1">Sistemas e Mídias</option>
 			</select><br/>
 			<label>Turno:</label><br/><div th:if="${#fields.hasErrors('turno')}" th:errors="*{turno}"></div>
 			<select class="selectBox" th:field="*{turno}"> 
