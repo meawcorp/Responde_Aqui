@@ -4,6 +4,7 @@ package com.respondeaqui.dao.implementacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -25,6 +26,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired DataSource ds;
+	
+	public List<Usuario> ranking() {
+		try {
+			return jdbcTemplate.query(
+					"SELECT * FROM usuario as usr LIMIT 10",
+					new UsuarioRowMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 	
 	public Usuario findByMatricula(String matricula) {
 		try {

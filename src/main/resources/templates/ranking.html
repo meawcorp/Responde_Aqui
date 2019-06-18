@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
@@ -21,35 +21,19 @@
     	<div class="ranking">
     		<h1 class="titleRanking">Ranking</h1>
     		<h1 class="subtitleRanking">Esses são os usuários que mais interagem no Responde Aqui :)</h1>
-    		<div class="user">
-    			<h1 class="place">1° lugar</h1>
-    			<div>
-    				<img th:src="@{/images/avatars/sloth.png}" class="imgProfile"></img>
-    				<h1>Karla Christie</h1>
-    			</div>
-    			<h1 class="punctuation">320 pontos</h1>
-    		</div>
-    		<article class="line"></article>
-    		
-    		<div class="user">
-    			<h1 class="place">2° lugar</h1>
-    			<div>
-    				<img th:src="@{/images/avatars/sloth.png}" class="imgProfile"></img>
-    				<h1>Karla Christie</h1>
-    			</div>
-    			<h1 class="punctuation">320 pontos</h1>
-    		</div>
-    		<article class="line"></article>
-    		
-    		<div class="user">
-    			<h1 class="place">3° lugar</h1>
-    			<div>
-    				<img th:src="@{/images/avatars/sloth.png}" class="imgProfile"></img>
-    				<h1>Karla Christie</h1>
-    			</div>
-    			<h1 class="punctuation">320 pontos</h1>
-    		</div>
-    		<article class="line"></article>
+    		<div  th:unless="${#lists.isEmpty(usuarios)}">
+			<div  th:each="usr, usuarioidx : ${usuarios}">
+	    		<div class="user">
+	    			<h1 class="place" th:text="${usuarioidx.index}+1 + '° lugar'">1°</h1>
+	    			<div>
+	    				<img th:src="@{/images/avatars/{foto}.png (foto=${usr.foto})}" class="imgProfile"></img>
+	    				<h1 th:text="${usr.nome}">Karla Christie</h1>
+	    			</div>
+	    			<h1 class="punctuation" th:text="${usr.pontos}">320 pontos</h1>
+	    		</div>
+	    		<article class="line"></article>
+	    	</div>
+	    	</div>
     	</div>
     </div>
 </body>

@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.respondeaqui.dao.CidadeDao;
 import com.respondeaqui.dao.FormularioDao;
+import com.respondeaqui.modelo.Cidade;
 import com.respondeaqui.modelo.Formulario;
 import com.respondeaqui.servico.UsuarioServico;
 
@@ -30,6 +32,9 @@ public class FormularioControlador {
 	
 	@Autowired
 	private UsuarioServico usuarioServico;
+	
+	@Autowired
+	private CidadeDao cidadeDao;
 	
 	@GetMapping("/responderformulario")
 	public String exibirResponderFormularios(Model model) {
@@ -68,6 +73,8 @@ public class FormularioControlador {
 	@GetMapping("/criarformulario")
 	public String criarFormulario(Model model) {
 		model.addAttribute("formulario", new Formulario());
+		List<Cidade> cidades = cidadeDao.getCidades();
+		model.addAttribute("cidades", cidades);
 		model.addAttribute("usuario", usuarioServico.getUsuario());
 		model.addAttribute("module", "novoForm");
 		return "newForm";
@@ -78,12 +85,15 @@ public class FormularioControlador {
 		
 		if(bindingResult.hasErrors()) {
 			System.out.println(bindingResult);
+			List<Cidade> cidades = cidadeDao.getCidades();
+			model.addAttribute("cidades", cidades);
 			return "newForm";
 		}
 		
 		formulario.setId_usuario(usuarioServico.getMatricula());
 		formulario.setDt_criacao(new Date());
 		
+		formularioDao.atualizarPontos(usuarioServico.getMatricula());
 		formularioDao.criarFormulario(formulario);
 		model.addAttribute("formulario", new Formulario());
 		model.addAttribute("usuario", usuarioServico.getUsuario());
@@ -122,9 +132,11 @@ public class FormularioControlador {
 	public String editarFormulario(Model model, @PathVariable("id") int id) {
 		
 		Formulario formulario = formularioDao.findById(id);
+		List<Cidade> cidades = cidadeDao.getCidades();
 
 		model.addAttribute("formulario", formulario);
 		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("cidades", cidades);
 		return "editForm";
 	}
 	

@@ -124,7 +124,9 @@ public class UsuarioControlador {
 	public String ranking(Model model) {
 
 		model.addAttribute("usuario", usuarioServico.getUsuario());
+		List<Usuario> usuarios = usuarioDao.ranking();
 		model.addAttribute("module", "classificacao");
+		model.addAttribute("usuarios", usuarios);
 		return "ranking";
 	}
 

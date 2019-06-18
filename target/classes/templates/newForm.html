@@ -12,6 +12,11 @@
     <link th:href="@{/css/fragments/navbar.css}" rel="stylesheet" />
     <link th:href="@{/css/elements.css}" rel="stylesheet" />
     <link th:href="@{/css/newForm.css}" rel="stylesheet" />
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+	<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <title>Responde Aqui</title>
 </head>
@@ -65,28 +70,32 @@
 	    		
 	    		<div class="selects" id="selectCidade">
 					<label>Cidade:</label><br/>
-					<select class="selectBox" th:field="*{id_cidade}">
-						<option value="1">Fortaleza</option>
+					<select id="cidade-select" class="selectBox" th:field="*{id_cidade}">
+						<option value="0">Selecione</option>
+						<option th:each="cidade : ${cidades}" 
+							th:value="${cidade.id}" 
+							th:text="${cidade.nome}"></option>
 					</select>
 				</div>
 				
 				<div class="selects" id="selectCampus">
 					<label>Campus:</label><br/>
-					<select class="selectBox" th:field="*{id_campus}">
-						<option value="1">Pici</option>
+					<select id="campus-select" class="selectBox" th:field="*{id_campus}">
+						<option value="0">Selecione</option>
 					</select>
 				</div>
 				
 				<div class="selects" id="selectCurso">
 					<label>Curso:</label><br/>
-					<select class="selectBox" th:field="*{id_curso}">
-						<option value="1">Sistemas e Mídias</option>
+					<select id="curso-select" class="selectBox" th:field="*{id_curso}">
+						<option value="0">Selecione</option>
 					</select>
 				</div>
 	    		
 	    		<div class="selects" id="selectTurno">
 					<label>Turno:</label><br/>
 					<select class="selectBox" th:field="*{turno}">
+						<option value="x">Selecione</option>
 						<option value="m">Matutino</option>
 						<option value="v">Vespertino</option>
 						<option value="i">Integral</option>
@@ -97,6 +106,7 @@
 				<div class="selects" id="selectSexo">
 					<label>Sexo:</label><br/>
 					<select class="selectBox" th:field="*{sexo}">
+						<option value="x">Selecione</option>
 						<option value="m">Masculino</option>
 						<option value="f">Feminino</option>
 					</select>
