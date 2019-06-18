@@ -18,7 +18,7 @@
                        <img th:src="@{/images/avatars/{foto}.png (foto=${formulario.usuario.foto})}" class="imgUserPost" />
                        <div>
                            <h1 class="nameUserPost" th:text="${formulario.usuario.nome}">Giovanna Lima</h1>
-                           <h1 class="timePost" th:text="${#dates.format(formulario.dt_fechamento, 'dd-MMMM-yyyy')}">21h</h1>
+                           <h1 class="timePost" th:text="'Encerra em: ' + ${#dates.format(formulario.dt_fechamento, 'dd-MMMM-yyyy')}">21h</h1>
                        </div>
                        <div class="qtdReply">
                            <i class="fas fa-reply"></i>
