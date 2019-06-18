@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
@@ -18,20 +18,20 @@
 	<div th:insert="fragments/bannerInitial :: bannerInitial"></div>
 	<div class="containerInfos">
 		<h1 class="titleLogin">Entre com sua conta e ajude seus colegas :)</h1>
+		<div th:if="${param.error}" class="errorLogin">
+	    	<h1>Matrícula ou senha incorreta.</h1>
+        </div>
 		<form th:action="@{/login}" th:method = "post">
 			<input type="text" class="textInput" placeholder="Matrícula" name="username"/>
 			<input type="password" class="textInput" placeholder="Senha" name="password"/>
-			<div th:if="${param.error}" class="errorLogin">
-	    	<h1>Matrícula ou senha incorreta.</h1>
-        </div>
 			<input type="submit" class="button buttonPrimary" value="Entrar"/>
 		</form>
 		
 		<div class="infosBottom">
 			<h1 class="noAccount">Ainda não possui uma conta?</h1>
-			<form th:action="@{/cadastro}">
+			<a th:href="@{/cadastro}">
 				<button class="button buttonPrimary btnRegister">Registre-se agora mesmo!</button>
-			</form>
+			</a>
 		</div>
 	</div>
 </body>

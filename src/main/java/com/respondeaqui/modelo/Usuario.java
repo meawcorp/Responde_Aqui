@@ -15,16 +15,16 @@ import com.respondeaqui.annotation.Turno;
 
 
 public class Usuario {
-	@NotEmpty
-	@Size(min = 6)
+	@Size(min = 6, message="Matrícula inválida")
+	@NotEmpty(message="")
 	private String matricula;
-	@NotEmpty
+	@NotEmpty(message="Informe seu nome")
 	private String nome;
-	@Size(min = 6, max = 9)
+	@Size(min = 6, message="Sua senha deve conter pelo menos 6 caracteres")
 	private String senha;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	@Idade(value = 18)
-	@NotNull
+	@Idade(value = 15, message="Idade Inválida")
+	@NotNull(message="Informe sua data de nascimento")
 	private Date dt_nascimento;
 	@Turno
 	private char turno;
@@ -32,17 +32,14 @@ public class Usuario {
 	private char sexo;
 	
 	private int pontos;
-	
+	@Select
 	private int foto;
 	@Select
 	private int id_cidade;
-	private String cidade;
 	@Select
 	private int id_campus;
-	private String campus;
 	@Select
 	private int id_curso;
-	private String curso;
 	
 	public Usuario() {}
 	
@@ -59,31 +56,6 @@ public class Usuario {
 		this.id_cidade = id_cidade;
 		this.id_campus = id_campus;
 		this.id_curso = id_curso;  
-	}
-
-	
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getCampus() {
-		return campus;
-	}
-
-	public void setCampus(String campus) {
-		this.campus = campus;
-	}
-
-	public String getCurso() {
-		return curso;
-	}
-
-	public void setCurso(String curso) {
-		this.curso = curso;
 	}
 
 	public String getMatricula() {
