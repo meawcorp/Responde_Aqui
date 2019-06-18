@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
@@ -13,81 +13,96 @@
     <link th:href="@{/css/editProfile.css}" rel="stylesheet" />
     <link th:href="@{/css/register.css}" rel="stylesheet" />
     <link th:href="@{/css/elements.css}" rel="stylesheet" />
+    <link th:href="@{/css/fragments/post.css}" rel="stylesheet" />
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+	<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <title>Responde Aqui</title>
 </head>
 <body>
-	<div th:insert="fragments/sidebar :: sidebar"> </div>
+	<div id="sidebar" th:insert="fragments/sidebar :: sidebar"> </div>
     <div th:insert="fragments/navbar :: navbar"></div>
+   	<div class="success">Perfil atualizado com sucessso!</div>
+   	<div class="failure">Falha ao atualizar perfil</div>
     <div class="container">
     	<div class="containerEditProfile">
 	    	<h1 class="titleEditProfile">Edite aqui seu perfil</h1>
-	    	<form class="formRegister" th:action="@{/cadastro}" method="post">
+	    	<form class="formRegister" th:action="@{/editarperfil}" th:object="${usuario}" method="post">
 				<div>
 					<label>Escolha seu avatar:</label>
 					<div class="avatars">
-						<input type="radio" name="avatar" id="avatar1" value="1"/>
-						<label for="avatar1"><img th:src="@{/images/avatars/sheep.png}" class="imgUserPost"/></label>
-						<input type="radio" name="avatar" id="avatar2" value="2"/>
-						<label for="avatar2"><img th:src="@{/images/avatars/spider.png}" class="imgUserPost"/></label>
-						<input type="radio" name="avatar" id="avatar3" value="3"/>
-						<label for="avatar3"><img th:src="@{/images/avatars/sloth.png}" class="imgUserPost"/></label>
-						<input type="radio" name="avatar" id="avatar4" value="4"/>
-						<label for="avatar4"><img th:src="@{/images/avatars/bear.png}" class="imgUserPost"/></label>
+						<input type="radio" name="avatar" id="avatar1" value="1" th:field="*{foto}"/>
+						<label for="avatar1"><img th:src="@{/images/avatars/1.png}" class="imgUserPost"/></label>
+						<input type="radio" name="avatar" id="avatar2" value="2" th:field="*{foto}"/>
+						<label for="avatar2"><img th:src="@{/images/avatars/2.png}" class="imgUserPost"/></label>
+						<input type="radio" name="avatar" id="avatar3" value="3" th:field="*{foto}"/>
+						<label for="avatar3"><img th:src="@{/images/avatars/3.png}" class="imgUserPost"/></label>
+						<input type="radio" name="avatar" id="avatar4" value="4" th:field="*{foto}"/>
+						<label for="avatar4"><img th:src="@{/images/avatars/4.png}" class="imgUserPost"/></label>
 					</div>
 				</div>
 				<div>
-					<input type="text" class="textInput" placeholder="Nome"/>
+					<input type="text" class="textInput" placeholder="Nome" th:field="*{nome}"/>
+					<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="errorRegister"></div>
 				</div>
 				<div>
-					<input type="text" class="textInput" placeholder="Matrícula"/>
+					<input type="text" class="textInput" placeholder="Matrícula" th:field="*{matricula}" disabled/>
+					<div th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}" class="errorRegister"></div>
 				</div>
 				<div>
 					<label>Data de nascimento:</label><br/>
-					<input type="date" class="dateInput" placeholder="Data"/>
+					<input type="date" class="dateInput" placeholder="Data" th:field="*{dt_nascimento}"/>
+					<div th:if="${#fields.hasErrors('dt_nascimento')}" th:errors="*{dt_nascimento}" class="errorRegister"></div>
 				</div>
 				<div class="formGender">
 					<label>Sexo:</label>
 					<article>
-						<input type="radio" name="sexo" id="f" value="f"/>
+						<input type="radio" name="sexo" id="f" value="f" th:field="*{sexo}"/>
 						<label for="f">Feminino</label>
 					</article>
 					<article>
-						<input type="radio" name="sexo" id="m" value="m"/>
+						<input type="radio" name="sexo" id="m" value="m" th:field="*{sexo}"/>
 						<label for="m">Masculino</label>
 					</article>
 					<article>
-						<input type="radio" name="sexo" id="n" value="n"/>
+						<input type="radio" name="sexo" id="n" value="n" th:field="*{sexo}"/>
 						<label for="n">Não definir</label>
 					</article>
-				</div><br/>
-				<label>Cidade:</label><br/>
-				<select class="selectBox">
+				</div>
+				<div th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div><br/>
+				<label>Cidade:</label><br/><div th:if="${#fields.hasErrors('id_cidade')}" th:errors="*{id_cidade}"></div>
+				<select id="cidade-select" class="selectBox" th:field="*{id_cidade}">
 					<option value="0">Selecione</option>
-					<option value="1">Fortaleza</option>
+					<option th:each="cidade : ${cidades}" 
+						th:value="${cidade.id}" 
+						th:text="${cidade.nome}"></option>
 				</select><br/>
-				<label>Campus:</label><br/>
-				<select class="selectBox">
+				<label>Campus:</label><br/><div th:if="${#fields.hasErrors('id_campus')}" th:errors="*{id_campus}"></div>
+				<select id="campus-select" class="selectBox" th:field="*{id_campus}">
 					<option value="0">Selecione</option>
-					<option value="1">Pici</option>
 				</select><br/>
-				<label>Curso:</label><br/>
-				<select class="selectBox">
+				<label>Curso:</label><br/><div th:if="${#fields.hasErrors('id_curso')}" th:errors="*{id_curso}"></div>
+				<select id="curso-select" class="selectBox" th:field="*{id_curso}">
 					<option value="0">Selecione</option>
-					<option value="1">Sistemas e Mídias</option>
 				</select><br/>
-				<label>Turno:</label><br/>
-				<select class="selectBox"> 
+				<label>Turno:</label><br/><div th:if="${#fields.hasErrors('turno')}" th:errors="*{turno}" class="errorRegister2"></div>
+				<select class="selectBox" th:field="*{turno}"> 
 					<option value="x">Selecione</option>
 					<option value="m">Matutino</option>
 					<option value="v">Vespertino</option>
 					<option value="d">Diurno</option>
 					<option value="n">Noturno</option>
 				</select><br/>
-				<input type="password" class="textInput" placeholder="Senha"/>
+				<input type="password" class="textInput" placeholder="Nova Senha" th:field="*{senha}"/>
+				<div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="errorRegister"></div>
 				<div class="buttons">
-					<input type="button" value="Voltar" class="button buttonSecundary" />
-					<input type="submit" value="Salvar" class="button buttonPrimary" />
+					<a th:href="@{/perfil}">
+						<input type="button" value="Voltar" class="button buttonSecundary" />
+					</a>
+					<input type="button" th:onclick="editarUsuario([[${usuario.matricula}]], nome.value, senha.value, [[${usuario.senha}]], dt_nascimento.value, turno.value, sexo.value, foto.value, id_cidade.value, id_campus.value, id_curso.value)" value="Salvar" class="button buttonPrimary" />
 				</div>
 			</form>
 		</div>

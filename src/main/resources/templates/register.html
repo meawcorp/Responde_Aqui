@@ -37,6 +37,7 @@
 					<input type="radio" name="avatar" id="avatar4" value="4" th:field="*{foto}"/>
 					<label for="avatar4"><img th:src="@{/images/avatars/4.png}" class="imgUserPost"/></label>
 				</div>
+				<div th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}" class="errorRegister"></div>
 			</div>
 			<div>
 				<input type="text" class="textInput" placeholder="Nome" th:field="*{nome}"/>
@@ -95,7 +96,9 @@
 			<div th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></div>
 			
 			<div class="buttons">
-				<input type="button" value="Cancelar" class="button buttonSecundary" />
+				<a th:href="@{/login}">
+					<input type="button" value="Cancelar" class="button buttonSecundary" />
+				</a>
 				<input type="submit" value="Cadastrar" class="button buttonPrimary" />
 			</div>
 		</form>

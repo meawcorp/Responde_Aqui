@@ -84,4 +84,13 @@ public class GreetingController {
 		model.addAttribute("module", "profile");
         return "editProfile";
     }
+<<<<<<< Updated upstream
+=======
+	
+	@GetMapping("/ranking_")
+    public String ranking(Model model) {
+		model.addAttribute("module", "ranking");
+        return "ranking";
+    }
+>>>>>>> Stashed changes
 }

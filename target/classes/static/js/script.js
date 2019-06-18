@@ -118,3 +118,61 @@ function editarFormulario(descricao, dt_criacao, dt_fechamento, id, id_campus, i
 		}); 
 	}
 }
+
+function editarUsuario(matricula, nome, novasenha, senhaoriginal, dt_nascimento, turno, sexo, foto, id_cidade, id_campus, id_curso){
+
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var token = $("meta[name='_csrf']").attr("content");
+	
+	var senha;
+	
+	if(novasenha == ""){
+		senha = senhaoriginal;
+	}else{
+		senha = novasenha;
+	}
+	
+	console.log(senha);
+
+    var usuario = {
+			matricula: matricula,
+			nome: nome,
+			senha: senha,
+			dt_nascimento: dt_nascimento,
+			turno: turno,
+			sexo: sexo,
+			foto: foto,
+			id_cidade: id_cidade,
+			id_campus: id_campus,
+			id_curso: id_curso
+	}
+    
+	var confirmacao = confirm("Este perfil será atualizado");
+	if (confirmacao == true) {
+		$.ajax({
+		    type: "POST",
+		    url: "/editarperfil",
+	        contentType : 'application/json; charset=utf-8',
+	        dataType : 'json',
+		    data: JSON.stringify(usuario),
+		    async : true,
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader(header, token);
+		    },
+		    success: function(response){
+		    	if(response == 1){
+		    		$( "div.success" ).fadeIn( 300 ).delay( 2000 ).fadeOut( 400 );
+		    		$.ajax({
+		    		    type: "GET",
+		    		    url: "/sidebar",
+		    		    success: function(response){
+		    		    	$("#sidebar").replaceWith(response);
+		    		    }
+		    		});
+		    	}else{
+		    		$( "div.failure" ).fadeIn( 300 ).delay( 2000 ).fadeOut( 400 );
+		    	}
+		    }
+		}); 
+	}
+}

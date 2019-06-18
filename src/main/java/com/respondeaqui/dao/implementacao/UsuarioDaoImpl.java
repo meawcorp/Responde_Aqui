@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,6 +23,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired DataSource ds;
 	
 	public Usuario findByMatricula(String matricula) {
 		try {
@@ -54,6 +58,61 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				return ps;
 			}
 		});
+	}
+	
+	public int editarPerfil(Usuario usuario) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+					"UPDATE usuario SET nome = ?, dt_nascimento = ?, turno = ?, sexo = ?, foto = ?, id_cidade = ?, id_campus = ?, id_curso = ? WHERE matricula = ?");
+			ps.setString(1, usuario.getNome());
+			ps.setDate(2, new java.sql.Date(usuario.getDt_nascimento().getTime()));
+			ps.setString(3, String.valueOf(usuario.getTurno()));
+			ps.setString(4, String.valueOf(usuario.getSexo()));
+			ps.setInt(5, usuario.getFoto());
+			ps.setInt(6, usuario.getId_cidade());
+			ps.setInt(7, usuario.getId_campus());
+			ps.setInt(8, usuario.getId_curso());
+			ps.setInt(9, Integer.parseInt(usuario.getMatricula()));
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public int redefinirSenha(String senha, String matricula) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+				"UPDATE usuario SET senha = ? WHERE matricula = ?");
+			ps.setString(1, new BCryptPasswordEncoder().encode(senha));
+			ps.setInt(2, Integer.parseInt(matricula));
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }
