@@ -38,6 +38,7 @@ public class FormularioControlador {
 		
 		model.addAttribute("formularios", formularios);
 		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("module", "responder");
 		return "timeline";
 	}
 
@@ -48,6 +49,7 @@ public class FormularioControlador {
 		
 		model.addAttribute("formulario", formulario);
 		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("module", "responder");
 		return "form";
 	}
 	
@@ -59,6 +61,7 @@ public class FormularioControlador {
 		int rs = formularioDao.atualizarPontos(usuarioServico.getMatricula());
 		model.addAttribute("response", rs);
 		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("module", "responder");
 		return "timeline";
 	}
 	
@@ -66,7 +69,7 @@ public class FormularioControlador {
 	public String criarFormulario(Model model) {
 		model.addAttribute("formulario", new Formulario());
 		model.addAttribute("usuario", usuarioServico.getUsuario());
-		model.addAttribute("module", "newForm");
+		model.addAttribute("module", "novoForm");
 		return "newForm";
 	}
 	
@@ -105,7 +108,7 @@ public class FormularioControlador {
 		
 		model.addAttribute("formularios", formularios);
 		model.addAttribute("usuario", usuarioServico.getUsuario());
-		model.addAttribute("module", "meusForms");
+		model.addAttribute("module", "respondidos");
 		return "answeredForms";
 	}
 	

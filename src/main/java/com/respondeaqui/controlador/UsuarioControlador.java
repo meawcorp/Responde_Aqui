@@ -78,6 +78,7 @@ public class UsuarioControlador {
 		model.addAttribute("usuario", usuarioServico.getUsuario());
 		model.addAttribute("editarusuario", new Usuario());
 		model.addAttribute("cidades", cidades);
+		model.addAttribute("module", "perfil");
 		return "editProfile";
 	}
 	
@@ -115,6 +116,7 @@ public class UsuarioControlador {
 	public String perfil(Model model) {
 
 		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("module", "perfil");
 		return "profile";
 	}
 	
@@ -122,6 +124,7 @@ public class UsuarioControlador {
 	public String ranking(Model model) {
 
 		model.addAttribute("usuario", usuarioServico.getUsuario());
+		model.addAttribute("module", "classificacao");
 		return "ranking";
 	}
 

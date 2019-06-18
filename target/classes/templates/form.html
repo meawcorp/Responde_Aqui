@@ -56,11 +56,11 @@
 	        Carregando…
 	        </iframe>
 			<div class="buttons">
+				<form th:action="@{/responderformulario/{id} (id=${formulario.id})}" th:method="post">
 				<a th:href="@{/responderformulario}">
 					<input type="button"  value="Cancelar" class="button buttonSecundary" />
 				</a>
-				<form th:action="@{/responderformulario/{id} (id=${formulario.id})}" th:method="post">
-					<input type="submit" value="Concluir" class="button buttonPrimary" />
+				<input type="submit" value="Concluir" class="button buttonPrimary" />
 				</form>
 			</div>
     	</div>
