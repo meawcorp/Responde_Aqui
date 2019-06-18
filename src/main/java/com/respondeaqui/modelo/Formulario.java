@@ -116,7 +116,7 @@ public class Formulario {
 	
     public String extrairLink(String link_form) {
 		String link = link_form;
-		link = link.replace("https://docs.google.com/forms/d/e/", "").replace("/viewform?usp=sf_link", "");
+		link = link.replace("https://docs.google.com/forms/d/e/", "").replace("/viewform", "");
 		return  link;
     }
     
