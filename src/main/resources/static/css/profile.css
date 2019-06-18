@@ -81,6 +81,7 @@
 	font-size: 80px;
     color: var(--primary);
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .contentProfile .contentLevel img{
