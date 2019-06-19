@@ -27,6 +27,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	@Autowired DataSource ds;
 	
+	//buscar os 10 usuários com maior pontuação
 	public List<Usuario> ranking() {
 		try {
 			return jdbcTemplate.query(
@@ -37,6 +38,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 	}
 	
+	//buscar usuário pela matrícula
 	public Usuario findByMatricula(String matricula) {
 		try {
 			return jdbcTemplate.queryForObject(
@@ -48,6 +50,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 	}
 	
+	//cadastrar usuário
 	public void cadastrarUsuario(final Usuario usuario) {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
@@ -71,6 +74,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		});
 	}
 	
+	//editar perfil
 	public int editarPerfil(Usuario usuario) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -102,6 +106,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 	}
 	
+	//mudar senha
 	public int redefinirSenha(String senha, String matricula) {
 		Connection con = null;
 		PreparedStatement ps = null;
