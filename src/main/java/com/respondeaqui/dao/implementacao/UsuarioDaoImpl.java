@@ -30,7 +30,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public List<Usuario> ranking() {
 		try {
 			return jdbcTemplate.query(
-					"SELECT * FROM usuario as usr LIMIT 10",
+					"SELECT *, ROW_NUMBER () OVER (ORDER BY usr.pontos DESC) FROM usuario as usr LIMIT 10",
 					new UsuarioRowMapper());
 		} catch (EmptyResultDataAccessException e) {
 			return null;

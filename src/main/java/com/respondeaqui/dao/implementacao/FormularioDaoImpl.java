@@ -64,7 +64,7 @@ public class FormularioDaoImpl implements FormularioDao {
 	public List<Formulario> findByUser(Usuario usuario) {
 		try {
 			return jdbcTemplate.query(
-					"SELECT * FROM formulario AS form, usuario AS usr WHERE (form.id_usuario = usr.matricula) AND form.id NOT IN (SELECT f.id FROM formulario AS f, formularios_respondidos AS form_resp WHERE f.id = form_resp.id_formulario AND f.id_usuario <> ?) AND (form.sexo = ? OR form.sexo = 'x') AND (form.turno = ? OR form.turno = 'x') AND (form.id_cidade = ? OR form.id_cidade = 0) AND (form.id_campus = ? OR form.id_campus = 0) AND (form.id_curso = ? OR form.id_curso = 0)", 
+					"SELECT * FROM formulario AS form, usuario AS usr WHERE (form.id_usuario = usr.matricula) AND form.id NOT IN (SELECT f.id FROM formulario AS f, formularios_respondidos AS form_resp WHERE f.id = form_resp.id_formulario) AND form.id_usuario <> ? AND (form.sexo = ? OR form.sexo = 'x') AND (form.turno = ? OR form.turno = 'x') AND (form.id_cidade = ? OR form.id_cidade = 0) AND (form.id_campus = ? OR form.id_campus = 0) AND (form.id_curso = ? OR form.id_curso = 0)", 
 					new FormularioRowMapper(), 
 					Integer.parseInt(usuario.getMatricula()), usuario.getSexo(), usuario.getTurno(), usuario.getId_cidade(), usuario.getId_campus(), usuario.getId_curso());
 		} catch (EmptyResultDataAccessException e) {
