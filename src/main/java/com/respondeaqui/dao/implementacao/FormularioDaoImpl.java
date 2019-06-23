@@ -95,8 +95,6 @@ public class FormularioDaoImpl implements FormularioDao {
 		}
 	}
 	
-<<<<<<< Updated upstream
-=======
 	//remover todos formulários do usuário
 	public int removerFormularios(String matricula) {
 		Connection con = null;
@@ -146,7 +144,6 @@ public class FormularioDaoImpl implements FormularioDao {
 	}
 	
 	//criar um formulário
->>>>>>> Stashed changes
 	public void criarFormulario(final Formulario formulario) {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
