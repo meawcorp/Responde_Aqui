@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="pt-br">
 <head>
 	<meta charset="utf-8" />
     <meta
@@ -12,6 +12,11 @@
     <link th:href="@{/css/fragments/navbar.css}" rel="stylesheet" />
     <link th:href="@{/css/profile.css}" rel="stylesheet" />
     <link th:href="@{/css/elements.css}" rel="stylesheet" />
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+	<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <title>Responde Aqui</title>
 </head>
@@ -51,7 +56,7 @@
     			<h1 class="titleLevel">formulários criados</h1>
     		</div>
     	</div>
+    	    <button th:onclick="removerConta();" class="button buttonPrimary">Deletar Conta</button>
     </div>
-	
 </body>
 </html>

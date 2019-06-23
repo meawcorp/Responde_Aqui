@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.respondeaqui.dao.CampusDao;
 import com.respondeaqui.dao.CidadeDao;
 import com.respondeaqui.dao.CursoDao;
+import com.respondeaqui.dao.FormularioDao;
 import com.respondeaqui.dao.UsuarioDao;
 import com.respondeaqui.modelo.Campus;
 import com.respondeaqui.modelo.Cidade;
@@ -33,6 +34,9 @@ public class UsuarioControlador {
 	
 	@Autowired
 	private UsuarioDao usuarioDao;
+	
+	@Autowired
+	private FormularioDao formularioDao;
 	
 	@Autowired
 	private CidadeDao cidadeDao;
@@ -91,6 +95,14 @@ public class UsuarioControlador {
 		
 		usuarioDao.editarPerfil(usuario);
 		return "editProfile";
+	}
+	
+	@RequestMapping(value = "/removerconta", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int removerConta(Model model) {
+		formularioDao.removerFormulariosResp(usuarioServico.getMatricula());
+		formularioDao.removerFormularios(usuarioServico.getMatricula());
+		int rs_del_conta = usuarioDao.removerConta(usuarioServico.getMatricula());
+		return rs_del_conta;
 	}
 	
 	@RequestMapping(value = "/editarperfil", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

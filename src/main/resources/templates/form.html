@@ -13,6 +13,8 @@
     <link th:href="@{/css/fragments/sidebar.css}" rel="stylesheet" />
     <link th:href="@{/css/fragments/navbar.css}" rel="stylesheet" />
     <link th:href="@{/css/fragments/post.css}" rel="stylesheet" />
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <title>Responde Aqui</title>
 </head>
@@ -45,7 +47,7 @@
 	              <h1 class="timePost" th:text="${#dates.format(formulario.dt_fechamento, 'dd-MMMM-yyyy')}">21h</h1>
 	            </div>
 	        </div>
-	        <iframe 
+	        <iframe th:id="iframe"
 	        	th:src="@{https://docs.google.com/forms/d/e/{link}/viewform?embedded=true (link=${formulario.link})}"
 	        	width="80%" height="600" 
 	        	frameborder="0" 
@@ -60,7 +62,7 @@
 				<a th:href="@{/responderformulario}">
 					<input type="button"  value="Cancelar" class="button buttonSecundary" />
 				</a>
-				<input type="submit" value="Concluir" class="button buttonPrimary" />
+				<input type="submit" id="concluir" value="Concluir" class="button buttonPrimary" />
 				</form>
 			</div>
     	</div>

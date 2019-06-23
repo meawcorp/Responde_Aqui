@@ -25,5 +25,9 @@ public interface FormularioDao {
 	
 	int removerFormulario(int id);
 	
+	int removerFormulariosResp(String matricula);
+	
+	int removerFormularios(String matricula);
+	
 	int editarFormulario(Formulario formulario);
 }

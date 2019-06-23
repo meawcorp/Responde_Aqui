@@ -125,5 +125,29 @@ public class UsuarioDaoImpl implements UsuarioDao {
 			}
 		}
 	}
+	
+	//remover usuário
+	public int removerConta(String matricula) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+					"DELETE FROM usuario WHERE matricula = ?");
+			ps.setInt(1, Integer.parseInt(matricula));
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 }
