@@ -99,6 +99,54 @@ public class FormularioDaoImpl implements FormularioDao {
 			}
 		}
 	}
+
+	//remover todos formulários do usuário
+	public int removerFormularios(String matricula) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+					"delete from formulario where id_usuario = ?");
+			ps.setInt(1, Integer.parseInt(matricula));
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	//remover todos os formulários respondidos pelo usuário
+	public int removerFormulariosResp(String matricula) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement(
+					"DELETE FROM formularios_respondidos WHERE id_usuario = ?");
+			ps.setInt(1, Integer.parseInt(matricula));
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 	//criar um formulário
 	public void criarFormulario(final Formulario formulario) {

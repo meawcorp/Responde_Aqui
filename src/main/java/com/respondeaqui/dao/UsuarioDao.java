@@ -15,4 +15,6 @@ public interface UsuarioDao {
 	int editarPerfil(Usuario usuario);
 	
 	int redefinirSenha(String senha, String matricula);
+	
+	int removerConta(String matricula);
 }

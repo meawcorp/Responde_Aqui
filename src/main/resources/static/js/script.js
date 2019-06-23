@@ -1,4 +1,18 @@
+var cont = 0;
 $(document).ready(function(){
+	
+	$('#iframe').on('load', function() {
+		cont++;
+		if(cont == 2){
+			$('#concluir').attr("disabled", false);
+		}else if(cont > 2){
+			cont = 1;
+			$("#concluir").attr("disabled", true);
+		}else{
+			$("#concluir").attr("disabled", true);
+		}
+	});
+	
 	$('#cidade-select').change(function() {
 		var id_cidade = $("option:selected", this).val();
 		   
@@ -174,5 +188,31 @@ function editarUsuario(matricula, nome, novasenha, senhaoriginal, dt_nascimento,
 		    	}
 		    }
 		}); 
+	}
+}
+
+
+function removerConta(){
+	
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var token = $("meta[name='_csrf']").attr("content");
+
+	var confirmacao = confirm("Esta conta será removida de forma permanente");
+	if (confirmacao == true) {
+		
+		$.ajax({
+		    type: "POST",
+		    url: "/removerconta",
+		    async : true,
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader(header, token);
+		    },
+		    success: function(response){
+		    	if(response == 1){
+		    		window.location.href="/login";
+		    	}
+		    }
+		}); 
+
 	}
 }
